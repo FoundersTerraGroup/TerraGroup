@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder's Hub — Narxoz University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #1A1AFF;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --surface: #F5F5F5;
+      --muted: #6B6B6B;
+      --dark-surface: #141414;
+      --accent-hover: #1414d9;
+      --max-width: 1200px;
+      --section-pad: clamp(3rem, 6vw, 5rem);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --transition: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Onest', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2rem);
+    }
+
+    .section-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-label--light {
+      color: var(--accent);
+    }
+
+    h1, h2, h3, .display {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--black);
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .accent-text {
+      color: var(--accent);
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(10, 10, 10, 0.06);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1rem clamp(1.25rem, 4vw, 2rem);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .nav__logo {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      white-space: nowrap;
+    }
+
+    .nav__logo-hub {
+      color: var(--accent);
+    }
+
+    .nav__toggle {
+      display: none;
+    }
+
+    .nav__burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav__burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: var(--transition);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--black);
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      font-family: 'Onest', sans-serif;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn--primary:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 8px 24px rgba(26, 26, 255, 0.35);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--black);
+      border: 1.5px solid rgba(10, 10, 10, 0.15);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--black);
+      background: var(--surface);
+    }
+
+    .btn--nav {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    /* HERO */
+    .hero {
+      padding: var(--section-pad) 0;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 0.5rem 1rem;
+      border: 1.5px solid rgba(10, 10, 10, 0.12);
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero__badge::before {
+      content: '•';
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__desc {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(10, 10, 10, 0.1);
+    }
+
+    .hero__stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .hero__stat-num {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--black);
+    }
+
+    .hero__stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero__card {
+      position: relative;
+      background: var(--accent);
+      border-radius: var(--radius);
+      min-height: 380px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .hero__card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px rgba(26, 26, 255, 0.3);
+    }
+
+    .hero__card-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .hero__card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 10, 0.45) 100%);
+      pointer-events: none;
+    }
+
+    .hero__card-content {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+    }
+
+    .hero__card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero__card-year {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 8vw, 3.75rem);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero__card-sub {
+      font-size: 1rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: var(--section-pad) 0;
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .about__left h2 {
+      margin-bottom: 2rem;
+    }
+
+    .about__logo-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: box-shadow var(--transition);
+    }
+
+    .about__logo-card:hover {
+      box-shadow: 0 12px 40px rgba(10, 10, 10, 0.08);
+    }
+
+    .about__logo-text {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .about__paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .about__paragraphs p {
+      font-size: 1rem;
+      color: var(--black);
+      line-height: 1.75;
+    }
+
+    /* DIRECTIONS */
+    .directions {
+      padding: var(--section-pad) 0;
+      background: var(--surface);
+    }
+
+    .directions__header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .directions__sub {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      max-width: 280px;
+      text-align: right;
+    }
+
+    .directions__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .direction-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .direction-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(10, 10, 10, 0.1);
+    }
+
+    .direction-card__visual {
+      position: relative;
+      height: 160px;
+      background: linear-gradient(135deg, var(--accent) 0%, #4d4dff 50%, #0a0a0a 100%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 1.25rem;
+    }
+
+    .direction-card__num {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: rgba(255, 255, 255, 0.25);
+      line-height: 1;
+    }
+
+    .direction-card__arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.25rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .direction-card:hover .direction-card__arrow {
+      background: var(--white);
+      color: var(--accent);
+      transform: rotate(-45deg);
+    }
+
+    .direction-card__body {
+      padding: 1.5rem;
+    }
+
+    .direction-card__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .direction-card__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* FOR WHOM */
+    .for-whom {
+      padding: var(--section-pad) 0;
+    }
+
+    .for-whom__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .whom-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 1.75rem 1.5rem;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .whom-card:hover {
+      background: var(--white);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(10, 10, 10, 0.08);
+    }
+
+    .whom-card__num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .whom-card__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .whom-card__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* HOW TO JOIN */
+    .join {
+      padding: var(--section-pad) 0;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .join h2 {
+      color: var(--white);
+    }
+
+    .join__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .join__desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 28rem;
+    }
+
+    .join__steps-card {
+      background: var(--dark-surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .join__step {
+      position: relative;
+      padding-left: 1.25rem;
+      padding-bottom: 1.75rem;
+      border-left: 3px solid var(--accent);
+      margin-left: 0.25rem;
+    }
+
+    .join__step:last-child {
+      padding-bottom: 0;
+    }
+
+    .join__step-num {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .join__step-title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+
+    .join__step-desc {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.55;
+    }
+
+    /* TEAM */
+    .team {
+      padding: var(--section-pad) 0;
+    }
+
+    .team__sub {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin-top: -0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .team__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .team-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(10, 10, 10, 0.1);
+    }
+
+    .team-card__photo {
+      height: 220px;
+      background: linear-gradient(145deg, #1a1aff 0%, #0a0a0a 70%);
+    }
+
+    .team-card__body {
+      padding: 1.5rem;
+    }
+
+    .team-card__role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .team-card__name {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-card__bio {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer__logo {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer__logo span {
+      color: var(--accent);
+    }
+
+    .footer__copy {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav__burger {
+        display: flex;
+      }
+
+      .nav__toggle:checked ~ .nav__burger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .nav__toggle:checked ~ .nav__burger span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav__toggle:checked ~ .nav__burger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .nav__menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+        padding: 1rem clamp(1.25rem, 4vw, 2rem) 1.5rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        display: none;
+        box-shadow: 0 12px 24px rgba(10, 10, 10, 0.06);
+      }
+
+      .nav__toggle:checked ~ .nav__menu {
+        display: flex;
+      }
+
+      .nav__links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+      }
+
+      .nav__links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(10, 10, 10, 0.06);
+      }
+
+      .nav__links a {
+        display: block;
+        padding: 0.875rem 0;
+      }
+
+      .nav__menu .btn--nav {
+        width: 100%;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .nav {
+        position: relative;
+      }
+
+      .nav__inner {
+        flex-wrap: wrap;
+        position: relative;
+      }
+
+      .hero__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__card {
+        min-height: 300px;
+        order: -1;
+      }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .directions__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .directions__sub {
+        text-align: left;
+      }
+
+      .directions__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .for-whom__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .join__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .nav__menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">Founder's <span class="nav__logo-hub">Hub</span></a>
+      <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-hidden="true">
+      <label for="nav-toggle" class="nav__burger" aria-label="Меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="nav__menu">
+        <ul class="nav__links">
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#directions">Направления</a></li>
+          <li><a href="#join">Как вступить</a></li>
+          <li><a href="#team">Команда</a></li>
+        </ul>
+        <a href="#join" class="btn btn--primary btn--nav">Вступить в Founder's Hub</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__left">
+          <span class="hero__badge">Студенческая организация Narxoz University</span>
+          <h1>Где студенты становятся <span class="accent-text">основателями</span></h1>
+          <p class="hero__desc">
+            Founder's Hub — пространство, где студенты Narxoz развивают лидерство, запускают проекты и строят сообщество будущих основателей.
+            Присоединяйся к тем, кто не ждёт идеального момента, а создаёт его сам.
+          </p>
+          <div class="hero__actions">
+            <a href="#join" class="btn btn--primary">Вступить в Founder's Hub →</a>
+            <a href="#about" class="btn btn--secondary">Узнать больше</a>
+          </div>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat-num">50+</span>
+              <span class="hero__stat-label">Участников</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-num">3</span>
+              <span class="hero__stat-label">Направления</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-num">2+</span>
+              <span class="hero__stat-label">Года</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__card">
+          <svg class="hero__card-pattern" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="geo" width="60" height="60" patternUnits="userSpaceOnUse">
+                <circle cx="30" cy="30" r="28" fill="none" stroke="white" stroke-width="1"/>
+                <line x1="0" y1="0" x2="60" y2="60" stroke="white" stroke-width="0.5"/>
+                <line x1="60" y1="0" x2="0" y2="60" stroke="white" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#geo)"/>
+          </svg>
+          <div class="hero__card-overlay"></div>
+          <div class="hero__card-content">
+            <p class="hero__card-label">Narxoz × Founder's Hub</p>
+            <p class="hero__card-year">2025</p>
+            <p class="hero__card-sub">Набор открыт — присоединяйся</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__left">
+          <span class="section-label">О нас</span>
+          <h2>Что такое Founder's Hub?</h2>
+          <div class="about__logo-card">
+            <p class="about__logo-text">Founder's<br><span class="accent-text">Hub</span></p>
+          </div>
+        </div>
+        <div class="about__paragraphs">
+          <p>Founder's Hub — пространство, где студенты Narxoz развивают лидерские навыки и предпринимательское мышление.</p>
+          <p>Организация объединяет тех, кто хочет не просто учиться, но и создавать проекты, строить сети и расти как профессионал.</p>
+          <p>В первую очередь Founder's Hub для тех, кто готов брать ответственность, действовать и менять среду вокруг себя.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="directions" id="directions">
+    <div class="container">
+      <div class="directions__header">
+        <div>
+          <span class="section-label">Направления</span>
+          <h2>Что предлагает Founder's Hub?</h2>
+        </div>
+        <p class="directions__sub">Три трека развития для каждого этапа твоего пути.</p>
+      </div>
+      <div class="directions__grid">
+        <article class="direction-card">
+          <div class="direction-card__visual">
+            <span class="direction-card__num">01</span>
+            <span class="direction-card__arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="direction-card__body">
+            <h3 class="direction-card__title">Образование и воркшопы</h3>
+            <p class="direction-card__desc">Регулярные сессии, лекции и мастер-классы от практиков и экспертов.</p>
+          </div>
+        </article>
+        <article class="direction-card">
+          <div class="direction-card__visual" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1aff 60%, #4d4dff 100%);">
+            <span class="direction-card__num">02</span>
+            <span class="direction-card__arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="direction-card__body">
+            <h3 class="direction-card__title">Проектная деятельность</h3>
+            <p class="direction-card__desc">Реальные проекты внутри организации: от идеи до готового продукта.</p>
+          </div>
+        </article>
+        <article class="direction-card">
+          <div class="direction-card__visual" style="background: linear-gradient(135deg, #4d4dff 0%, #1a1aff 40%, #0a0a0a 100%);">
+            <span class="direction-card__num">03</span>
+            <span class="direction-card__arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="direction-card__body">
+            <h3 class="direction-card__title">Нетворкинг и сообщество</h3>
+            <p class="direction-card__desc">Комьюнити студентов, выпускников и менторов для роста и поддержки.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="for-whom">
+    <div class="container">
+      <span class="section-label">Для кого</span>
+      <h2>Кому подойдёт?</h2>
+      <div class="for-whom__grid">
+        <article class="whom-card">
+          <div class="whom-card__num">01</div>
+          <h3 class="whom-card__title">Студентам с амбициями</h3>
+          <p class="whom-card__desc">Хочешь расти — мы дадим среду и инструменты.</p>
+        </article>
+        <article class="whom-card">
+          <div class="whom-card__num">02</div>
+          <h3 class="whom-card__title">Будущим предпринимателям</h3>
+          <p class="whom-card__desc">Развивай идею и найди единомышленников внутри университета.</p>
+        </article>
+        <article class="whom-card">
+          <div class="whom-card__num">03</div>
+          <h3 class="whom-card__title">Лидерам и организаторам</h3>
+          <p class="whom-card__desc">Прокачай управленческие навыки на реальных задачах.</p>
+        </article>
+        <article class="whom-card">
+          <div class="whom-card__num">04</div>
+          <h3 class="whom-card__title">Тем, кто ищет сообщество</h3>
+          <p class="whom-card__desc">Найди людей, которые думают так же, как ты.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="container">
+      <span class="section-label section-label--light">Как вступить</span>
+      <div class="join__grid">
+        <div class="join__left">
+          <h2>Как это работает?</h2>
+          <p class="join__desc">
+            Вступление в Founder's Hub — простой и прозрачный процесс. Мы ищем мотивированных студентов, готовых учиться, действовать и развивать организацию вместе с командой.
+          </p>
+          <a href="#join" class="btn btn--primary">Начать сейчас →</a>
+        </div>
+        <div class="join__steps-card">
+          <div class="join__step">
+            <p class="join__step-num">01</p>
+            <p class="join__step-title">Заполни анкету</p>
+            <p class="join__step-desc">Расскажи о себе и своих целях.</p>
+          </div>
+          <div class="join__step">
+            <p class="join__step-num">02</p>
+            <p class="join__step-title">Пройди собеседование</p>
+            <p class="join__step-desc">Коротко поговори с командой.</p>
+          </div>
+          <div class="join__step">
+            <p class="join__step-num">03</p>
+            <p class="join__step-title">Вступи в команду</p>
+            <p class="join__step-desc">Стань частью Founder's Hub.</p>
+          </div>
+          <div class="join__step">
+            <p class="join__step-num">04</p>
+            <p class="join__step-title">Развивайся</p>
+            <p class="join__step-desc">Участвуй, создавай, расти.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div class="container">
+      <span class="section-label">Команда</span>
+      <h2>Команда Founder's Hub</h2>
+      <p class="team__sub">Студенты, которые строят организацию изнутри.</p>
+      <div class="team__grid">
+        <article class="team-card">
+          <div class="team-card__photo"></div>
+          <div class="team-card__body">
+            <p class="team-card__role">Президент</p>
+            <h3 class="team-card__name">Имя Фамилия</h3>
+            <p class="team-card__bio">Развивает стратегию и видение организации.</p>
+          </div>
+        </article>
+        <article class="team-card">
+          <div class="team-card__photo" style="background: linear-gradient(145deg, #0a0a0a 0%, #1a1aff 50%);"></div>
+          <div class="team-card__body">
+            <p class="team-card__role">Директор по операциям</p>
+            <h3 class="team-card__name">Имя Фамилия</h3>
+            <p class="team-card__bio">Отвечает за процессы и команду.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__logo">Founder's <span>Hub</span></p>
+      <p class="footer__copy">© 2025 Founder's Hub — Narxoz University, Almaty</p>
+    </div>
+  </footer>
+
+</body>
+</html>
