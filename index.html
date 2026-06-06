@@ -1336,6 +1336,30 @@
       opacity: 0.7;
     }
 
+    /* SLIDERS */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(100, 70, 32, 0.2);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      border: none;
+      padding: 0;
+    }
+
+    .slider-dot.is-active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav__burger {
@@ -1431,16 +1455,72 @@
         grid-template-columns: 1fr;
       }
 
-      .for-whom__grid {
-        grid-template-columns: 1fr;
-      }
-
       .join__grid {
         grid-template-columns: 1fr;
       }
 
+      .news-cards-grid,
+      .for-whom__grid,
       .team__grid {
-        grid-template-columns: 1fr;
+        display: block;
+      }
+
+      #news-slider .slider-track {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0;
+      }
+
+      #news-slider .slider-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      #news-slider .news-card {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        width: 100%;
+        border-radius: var(--radius);
+      }
+
+      #whom-slider .slider-track {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 12px;
+        padding-bottom: 4px;
+      }
+
+      #whom-slider .slider-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      #whom-slider .whom-card {
+        flex: 0 0 85%;
+        scroll-snap-align: start;
+        border-radius: var(--radius-sm);
+      }
+
+      #team-slider .slider-track {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0;
+      }
+
+      #team-slider .slider-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      #team-slider .team-card {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
       }
 
       .inner-2col {
@@ -1458,10 +1538,6 @@
       .community-cards {
         grid-template-columns: 1fr;
       }
-
-      .news-cards-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (min-width: 769px) {
@@ -1469,6 +1545,22 @@
         display: flex;
         align-items: center;
         gap: 2rem;
+      }
+
+      .slider-dots {
+        display: none !important;
+      }
+
+      #news-slider,
+      #whom-slider,
+      #team-slider {
+        display: contents;
+      }
+
+      #news-slider .slider-track,
+      #whom-slider .slider-track,
+      #team-slider .slider-track {
+        display: contents;
       }
     }
   </style>
@@ -1572,34 +1664,42 @@
           <span class="section-label">Новости</span>
           <h3 class="about__news-heading">Лента событий</h3>
           <div class="news-cards-grid">
-            <article class="news-card" data-route="news/1">
-              <div class="news-card__visual news-card__visual--1">
-                <span class="news-card__tag">Выборы</span>
+            <div class="slider-wrapper" id="news-slider">
+              <div class="slider-track">
+                <article class="news-card" data-route="news/1">
+                  <div class="news-card__visual news-card__visual--1">
+                    <span class="news-card__tag">Выборы</span>
+                  </div>
+                  <div class="news-card__body">
+                    <span class="news-card__date">Май 2026</span>
+                    <h4 class="news-card__title">Старт выборов Вице-президента Founder's Hub</h4>
+                    <p class="news-card__desc">В организации официально открыт приём заявок на пост Вице-президента. Любой активный участник может выдвинуть свою кандидатуру и побороться за роль.</p>
+                    <div class="news-card__footer">
+                      <button type="button" class="news-card__read-btn" data-route="news/1">Читать →</button>
+                      <span class="news-card__meta">#1</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="news-card" data-route="news/2">
+                  <div class="news-card__visual news-card__visual--2">
+                    <span class="news-card__tag">Событие</span>
+                  </div>
+                  <div class="news-card__body">
+                    <span class="news-card__date">7 мая 2026</span>
+                    <h4 class="news-card__title">Завершение семестра и праздник для мужской команды</h4>
+                    <p class="news-card__desc">Founder's Hub успешно закрыл учебный семестр. На финальном мероприятии мы поздравили мужской коллектив с их праздником — 7 мая. Участникам были вручены подарки и сертификаты.</p>
+                    <div class="news-card__footer">
+                      <button type="button" class="news-card__read-btn" data-route="news/2">Читать →</button>
+                      <span class="news-card__meta">#2</span>
+                    </div>
+                  </div>
+                </article>
               </div>
-              <div class="news-card__body">
-                <span class="news-card__date">Май 2026</span>
-                <h4 class="news-card__title">Старт выборов Вице-президента Founder's Hub</h4>
-                <p class="news-card__desc">В организации официально открыт приём заявок на пост Вице-президента. Любой активный участник может выдвинуть свою кандидатуру и побороться за роль.</p>
-                <div class="news-card__footer">
-                  <button type="button" class="news-card__read-btn" data-route="news/1">Читать →</button>
-                  <span class="news-card__meta">#1</span>
-                </div>
+              <div class="slider-dots">
+                <span class="slider-dot is-active" data-index="0"></span>
+                <span class="slider-dot" data-index="1"></span>
               </div>
-            </article>
-            <article class="news-card" data-route="news/2">
-              <div class="news-card__visual news-card__visual--2">
-                <span class="news-card__tag">Событие</span>
-              </div>
-              <div class="news-card__body">
-                <span class="news-card__date">7 мая 2026</span>
-                <h4 class="news-card__title">Завершение семестра и праздник для мужской команды</h4>
-                <p class="news-card__desc">Founder's Hub успешно закрыл учебный семестр. На финальном мероприятии мы поздравили мужской коллектив с их праздником — 7 мая. Участникам были вручены подарки и сертификаты.</p>
-                <div class="news-card__footer">
-                  <button type="button" class="news-card__read-btn" data-route="news/2">Читать →</button>
-                  <span class="news-card__meta">#2</span>
-                </div>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </div>
@@ -1654,26 +1754,36 @@
         <span class="section-label">Для кого</span>
         <h2>Кому подойдёт?</h2>
         <div class="for-whom__grid">
-          <article class="whom-card">
-            <div class="whom-card__num">01</div>
-            <h3 class="whom-card__title">Студентам с амбициями</h3>
-            <p class="whom-card__desc">Хочешь расти — мы дадим среду и инструменты.</p>
-          </article>
-          <article class="whom-card">
-            <div class="whom-card__num">02</div>
-            <h3 class="whom-card__title">Будущим предпринимателям</h3>
-            <p class="whom-card__desc">Развивай идею и найди единомышленников внутри университета.</p>
-          </article>
-          <article class="whom-card">
-            <div class="whom-card__num">03</div>
-            <h3 class="whom-card__title">Лидерам и организаторам</h3>
-            <p class="whom-card__desc">Прокачай управленческие навыки на реальных задачах.</p>
-          </article>
-          <article class="whom-card">
-            <div class="whom-card__num">04</div>
-            <h3 class="whom-card__title">Тем, кто ищет сообщество</h3>
-            <p class="whom-card__desc">Найди людей, которые думают так же, как ты.</p>
-          </article>
+          <div class="slider-wrapper" id="whom-slider">
+            <div class="slider-track">
+              <article class="whom-card">
+                <div class="whom-card__num">01</div>
+                <h3 class="whom-card__title">Студентам с амбициями</h3>
+                <p class="whom-card__desc">Хочешь расти — мы дадим среду и инструменты.</p>
+              </article>
+              <article class="whom-card">
+                <div class="whom-card__num">02</div>
+                <h3 class="whom-card__title">Будущим предпринимателям</h3>
+                <p class="whom-card__desc">Развивай идею и найди единомышленников внутри университета.</p>
+              </article>
+              <article class="whom-card">
+                <div class="whom-card__num">03</div>
+                <h3 class="whom-card__title">Лидерам и организаторам</h3>
+                <p class="whom-card__desc">Прокачай управленческие навыки на реальных задачах.</p>
+              </article>
+              <article class="whom-card">
+                <div class="whom-card__num">04</div>
+                <h3 class="whom-card__title">Тем, кто ищет сообщество</h3>
+                <p class="whom-card__desc">Найди людей, которые думают так же, как ты.</p>
+              </article>
+            </div>
+            <div class="slider-dots">
+              <span class="slider-dot is-active" data-index="0"></span>
+              <span class="slider-dot" data-index="1"></span>
+              <span class="slider-dot" data-index="2"></span>
+              <span class="slider-dot" data-index="3"></span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1721,30 +1831,38 @@
         <h2>Команда Founder's Hub</h2>
         <p class="team__sub">Студенты, которые строят организацию изнутри.</p>
         <div class="team__grid">
-          <article class="team-card">
-            <div class="team-card__photo"></div>
-            <div class="team-card__body">
-              <p class="team-card__role">Президент</p>
-              <h3 class="team-card__name">Амиржан Жампеисов</h3>
-              <p class="team-card__bio">Развивает стратегию и видение организации.</p>
-              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
-              <div class="team-card__full-bio">
-                Амиржан возглавляет Founder's Hub с момента основания. Отвечает за стратегическое направление, внешние партнёрства и культуру организации. Студент факультета бизнеса Narxoz University, ментор стартап-команд.
-              </div>
+          <div class="slider-wrapper" id="team-slider">
+            <div class="slider-track">
+              <article class="team-card">
+                <div class="team-card__photo"></div>
+                <div class="team-card__body">
+                  <p class="team-card__role">Президент</p>
+                  <h3 class="team-card__name">Амиржан Жампеисов</h3>
+                  <p class="team-card__bio">Развивает стратегию и видение организации.</p>
+                  <button type="button" class="team-card__toggle">Читать биографию ↓</button>
+                  <div class="team-card__full-bio">
+                    Амиржан возглавляет Founder's Hub с момента основания. Отвечает за стратегическое направление, внешние партнёрства и культуру организации. Студент факультета бизнеса Narxoz University, ментор стартап-команд.
+                  </div>
+                </div>
+              </article>
+              <article class="team-card">
+                <div class="team-card__photo team-card__photo--2"></div>
+                <div class="team-card__body">
+                  <p class="team-card__role">Операционный директор</p>
+                  <h3 class="team-card__name">Богдан Навроцки</h3>
+                  <p class="team-card__bio">Отвечает за процессы и команду.</p>
+                  <button type="button" class="team-card__toggle">Читать биографию ↓</button>
+                  <div class="team-card__full-bio">
+                    Богдан выстраивает внутренние процессы, HR-систему и межотдельную координацию Founder's Hub. Обеспечивает работу организации в соответствии с Уставом и операционными стандартами.
+                  </div>
+                </div>
+              </article>
             </div>
-          </article>
-          <article class="team-card">
-            <div class="team-card__photo team-card__photo--2"></div>
-            <div class="team-card__body">
-              <p class="team-card__role">Операционный директор</p>
-              <h3 class="team-card__name">Богдан Навроцки</h3>
-              <p class="team-card__bio">Отвечает за процессы и команду.</p>
-              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
-              <div class="team-card__full-bio">
-                Богдан выстраивает внутренние процессы, HR-систему и межотдельную координацию Founder's Hub. Обеспечивает работу организации в соответствии с Уставом и операционными стандартами.
-              </div>
+            <div class="slider-dots">
+              <span class="slider-dot is-active" data-index="0"></span>
+              <span class="slider-dot" data-index="1"></span>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -2155,12 +2273,76 @@
           btn.textContent = isOpen ? 'Свернуть ↑' : 'Читать биографию ↓';
         });
       });
+
+      // Auto-close mobile nav when any nav link or CTA button is clicked
+      document.querySelectorAll('.nav__links a, .nav__menu .btn').forEach(el => {
+        el.addEventListener('click', () => {
+          const toggle = document.getElementById('nav-toggle');
+          if (toggle) toggle.checked = false;
+        });
+      });
     });
 
     function goTo(hash) {
       history.pushState(null, '', hash ? '#' + hash : window.location.pathname);
       navigate(hash);
     }
+
+    (function() {
+      const track = document.querySelector('#news-slider .slider-track');
+      const dots  = document.querySelectorAll('#news-slider .slider-dot');
+      if (!track || !dots.length) return;
+
+      track.addEventListener('scroll', () => {
+        const index = Math.round(track.scrollLeft / track.offsetWidth);
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+      }, { passive: true });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const i = +dot.dataset.index;
+          track.scrollTo({ left: i * track.offsetWidth, behavior: 'smooth' });
+        });
+      });
+    })();
+
+    (function() {
+      const track = document.querySelector('#whom-slider .slider-track');
+      const dots  = document.querySelectorAll('#whom-slider .slider-dot');
+      if (!track || !dots.length) return;
+
+      track.addEventListener('scroll', () => {
+        const index = Math.round(track.scrollLeft /
+          (track.querySelector('.whom-card')?.offsetWidth + 12 || track.offsetWidth));
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+      }, { passive: true });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const i = +dot.dataset.index;
+          const card = track.querySelectorAll('.whom-card')[i];
+          if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        });
+      });
+    })();
+
+    (function() {
+      const track = document.querySelector('#team-slider .slider-track');
+      const dots  = document.querySelectorAll('#team-slider .slider-dot');
+      if (!track || !dots.length) return;
+
+      track.addEventListener('scroll', () => {
+        const index = Math.round(track.scrollLeft / track.offsetWidth);
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+      }, { passive: true });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const i = +dot.dataset.index;
+          track.scrollTo({ left: i * track.offsetWidth, behavior: 'smooth' });
+        });
+      });
+    })();
   </script>
 
 </body>
