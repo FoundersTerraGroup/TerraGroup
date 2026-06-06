@@ -421,6 +421,134 @@
       line-height: 1.75;
     }
 
+    .about__news {
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .about__news-heading {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--black);
+    }
+
+    .news-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .news-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1.5px solid rgba(100, 70, 32, 0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(100, 70, 32, 0.15);
+    }
+
+    .news-card__visual {
+      position: relative;
+      height: 120px;
+    }
+
+    .news-card__visual--1 {
+      background: linear-gradient(135deg, #644620 0%, #8a6030 60%, #e9dbac 100%);
+    }
+
+    .news-card__visual--2 {
+      background: linear-gradient(135deg, #3d2910 0%, #644620 50%, #8a6030 100%);
+    }
+
+    .news-card__tag {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      background: rgba(233, 219, 172, 0.25);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+
+    .news-card__body {
+      padding: 1.25rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .news-card__date {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .news-card__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--black);
+      line-height: 1.35;
+    }
+
+    .news-card__desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .news-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.875rem;
+      border-top: 1px solid rgba(100, 70, 32, 0.1);
+      margin-top: 0.5rem;
+    }
+
+    .news-card__read-btn {
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      font-family: 'Onest', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      pointer-events: auto;
+    }
+
+    .news-card__read-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .news-card__read-btn:active {
+      transform: scale(0.98);
+    }
+
+    .news-card__meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
     /* DIRECTIONS */
     .directions {
       padding: var(--section-pad) 0;
@@ -453,6 +581,7 @@
       background: var(--white);
       border-radius: var(--radius);
       overflow: hidden;
+      cursor: pointer;
       transition: transform var(--transition), box-shadow var(--transition);
     }
 
@@ -497,8 +626,7 @@
       justify-content: center;
       color: var(--white);
       font-size: 1.25rem;
-      border: none;
-      cursor: pointer;
+      flex-shrink: 0;
       transition: background var(--transition), transform var(--transition), color var(--transition);
     }
 
@@ -517,17 +645,7 @@
       font-weight: 700;
       font-size: 1rem;
       margin-bottom: 0.5rem;
-      background: none;
-      border: none;
-      padding: 0;
-      text-align: left;
-      cursor: pointer;
       color: var(--black);
-      transition: color var(--transition);
-    }
-
-    .direction-card__title:hover {
-      color: var(--accent);
     }
 
     .direction-card__desc {
@@ -672,11 +790,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
+      align-items: start;
     }
 
     .team-card {
       border-radius: var(--radius);
-      overflow: hidden;
       background: var(--surface);
       transition: transform var(--transition), box-shadow var(--transition);
     }
@@ -688,6 +806,8 @@
 
     .team-card__photo {
       height: 220px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
       background: linear-gradient(145deg, #644620 0%, #1a1208 70%);
     }
 
@@ -724,17 +844,17 @@
     .team-card__full-bio {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease, margin 0.4s ease, border-color 0.4s ease;
+      transition: max-height 0.4s ease;
       font-size: 0.875rem;
       color: var(--muted);
       line-height: 1.65;
-      border-top: 1px solid transparent;
     }
 
-    .team-card.is-expanded .team-card__full-bio {
+    .team-card__full-bio.is-open {
+      max-height: 300px;
       margin-top: 0.75rem;
       padding-top: 0.75rem;
-      border-top-color: var(--accent-light);
+      border-top: 1px solid var(--accent-light);
     }
 
     .team-card__toggle {
@@ -1147,6 +1267,75 @@
       margin-bottom: 1.5rem;
     }
 
+    .news-hero__tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(100, 70, 32, 0.15);
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .news-hero__date {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .news-article {
+      background: var(--white);
+      padding: 3rem clamp(1.25rem, 4vw, 1.5rem);
+    }
+
+    .news-article__inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .news-article__inner p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--black);
+    }
+
+    .news-callout {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--black);
+      font-style: italic;
+    }
+
+    .news-back {
+      background: var(--surface);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .news-back__btn {
+      font-family: 'Onest', sans-serif;
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .news-back__btn:hover {
+      opacity: 0.7;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav__burger {
@@ -1269,6 +1458,10 @@
       .community-cards {
         grid-template-columns: 1fr;
       }
+
+      .news-cards-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (min-width: 769px) {
@@ -1350,7 +1543,7 @@
             <div class="hero__card-overlay"></div>
             <div class="hero__card-content">
               <p class="hero__card-label">Narxoz × Founder's Hub</p>
-              <p class="hero__card-year">2025</p>
+              <p class="hero__card-year">2026</p>
               <p class="hero__card-sub">Набор открыт — присоединяйся</p>
             </div>
           </div>
@@ -1374,6 +1567,41 @@
             <p>В первую очередь Founder's Hub для тех, кто готов брать ответственность, действовать и менять среду вокруг себя.</p>
           </div>
         </div>
+
+        <div class="about__news">
+          <span class="section-label">Новости</span>
+          <h3 class="about__news-heading">Лента событий</h3>
+          <div class="news-cards-grid">
+            <article class="news-card" data-route="news/1">
+              <div class="news-card__visual news-card__visual--1">
+                <span class="news-card__tag">Выборы</span>
+              </div>
+              <div class="news-card__body">
+                <span class="news-card__date">Май 2026</span>
+                <h4 class="news-card__title">Старт выборов Вице-президента Founder's Hub</h4>
+                <p class="news-card__desc">В организации официально открыт приём заявок на пост Вице-президента. Любой активный участник может выдвинуть свою кандидатуру и побороться за роль.</p>
+                <div class="news-card__footer">
+                  <button type="button" class="news-card__read-btn" data-route="news/1">Читать →</button>
+                  <span class="news-card__meta">#1</span>
+                </div>
+              </div>
+            </article>
+            <article class="news-card" data-route="news/2">
+              <div class="news-card__visual news-card__visual--2">
+                <span class="news-card__tag">Событие</span>
+              </div>
+              <div class="news-card__body">
+                <span class="news-card__date">7 мая 2026</span>
+                <h4 class="news-card__title">Завершение семестра и праздник для мужской команды</h4>
+                <p class="news-card__desc">Founder's Hub успешно закрыл учебный семестр. На финальном мероприятии мы поздравили мужской коллектив с их праздником — 7 мая. Участникам были вручены подарки и сертификаты.</p>
+                <div class="news-card__footer">
+                  <button type="button" class="news-card__read-btn" data-route="news/2">Читать →</button>
+                  <span class="news-card__meta">#2</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1387,33 +1615,33 @@
           <p class="directions__sub">Три трека развития для каждого этапа твоего пути.</p>
         </div>
         <div class="directions__grid">
-          <article class="direction-card">
+          <article class="direction-card" data-route="directions/education">
             <div class="direction-card__visual">
               <span class="direction-card__num">01</span>
-              <button type="button" class="direction-card__arrow" data-route="directions/education" aria-label="Открыть направление">↗</button>
+              <span class="direction-card__arrow" aria-hidden="true">↗</span>
             </div>
             <div class="direction-card__body">
-              <button type="button" class="direction-card__title" data-route="directions/education">Образование и воркшопы</button>
+              <h3 class="direction-card__title">Образование и воркшопы</h3>
               <p class="direction-card__desc">Регулярные сессии, лекции и мастер-классы от практиков и экспертов.</p>
             </div>
           </article>
-          <article class="direction-card">
+          <article class="direction-card" data-route="directions/projects">
             <div class="direction-card__visual direction-card__visual--2">
               <span class="direction-card__num">02</span>
-              <button type="button" class="direction-card__arrow" data-route="directions/projects" aria-label="Открыть направление">↗</button>
+              <span class="direction-card__arrow" aria-hidden="true">↗</span>
             </div>
             <div class="direction-card__body">
-              <button type="button" class="direction-card__title" data-route="directions/projects">Проектная деятельность</button>
+              <h3 class="direction-card__title">Проектная деятельность</h3>
               <p class="direction-card__desc">Реальные проекты внутри организации: от идеи до готового продукта.</p>
             </div>
           </article>
-          <article class="direction-card">
+          <article class="direction-card" data-route="directions/network">
             <div class="direction-card__visual direction-card__visual--3">
               <span class="direction-card__num">03</span>
-              <button type="button" class="direction-card__arrow" data-route="directions/network" aria-label="Открыть направление">↗</button>
+              <span class="direction-card__arrow" aria-hidden="true">↗</span>
             </div>
             <div class="direction-card__body">
-              <button type="button" class="direction-card__title" data-route="directions/network">Нетворкинг и сообщество</button>
+              <h3 class="direction-card__title">Нетворкинг и сообщество</h3>
               <p class="direction-card__desc">Комьюнити студентов, выпускников и менторов для роста и поддержки.</p>
             </div>
           </article>
@@ -1499,10 +1727,10 @@
               <p class="team-card__role">Президент</p>
               <h3 class="team-card__name">Амиржан Жампеисов</h3>
               <p class="team-card__bio">Развивает стратегию и видение организации.</p>
+              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
               <div class="team-card__full-bio">
                 Амиржан возглавляет Founder's Hub с момента основания. Отвечает за стратегическое направление, внешние партнёрства и культуру организации. Студент факультета бизнеса Narxoz University, ментор стартап-команд.
               </div>
-              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
             </div>
           </article>
           <article class="team-card">
@@ -1511,10 +1739,10 @@
               <p class="team-card__role">Операционный директор</p>
               <h3 class="team-card__name">Богдан Навроцки</h3>
               <p class="team-card__bio">Отвечает за процессы и команду.</p>
+              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
               <div class="team-card__full-bio">
                 Богдан выстраивает внутренние процессы, HR-систему и межотдельную координацию Founder's Hub. Обеспечивает работу организации в соответствии с Уставом и операционными стандартами.
               </div>
-              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
             </div>
           </article>
         </div>
@@ -1524,7 +1752,7 @@
     <footer class="footer">
       <div class="container">
         <p class="footer__logo">Founder's <span>Hub</span></p>
-        <p class="footer__copy">© 2025 Founder's Hub — Narxoz University, Almaty</p>
+        <p class="footer__copy">© 2023 Founder's Hub — Narxoz University, Almaty</p>
       </div>
     </footer>
   </div>
@@ -1783,15 +2011,71 @@
     </section>
   </div>
 
+  <!-- NEWS PAGE 1 -->
+  <div id="page-news-1" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="news-hero__tag">Выборы</span>
+        <p class="news-hero__date">Май 2026</p>
+        <h1>Старт выборов Вице-президента Founder's Hub</h1>
+        <p class="inner-hero__lead">Founder's Hub объявляет о начале официального процесса выборов на пост Вице-президента организации.</p>
+      </div>
+    </div>
+
+    <section class="news-article">
+      <div class="news-article__inner">
+        <p>Выборы Вице-президента — важный шаг в развитии внутренней демократии Founder's Hub. Пост Вице-президента предполагает активное участие в стратегическом планировании, поддержку Президента и координацию ключевых направлений организации.</p>
+        <p>Кандидаты должны быть действующими участниками Founder's Hub, готовыми брать на себя ответственность и действовать в интересах всей команды. Заявки принимаются через официальную анкету.</p>
+        <p>Процедура выборов включает: подачу заявки и предвыборной программы, публичную презентацию перед участниками и голосование членов организации. Итоги будут объявлены по завершении голосования.</p>
+        <blockquote class="news-callout">Если ты хочешь развивать Founder's Hub и готов нести ответственность — это твой шанс. Выдвигай кандидатуру.</blockquote>
+      </div>
+    </section>
+
+    <section class="news-back">
+      <div class="container">
+        <button type="button" class="news-back__btn" data-go-home>← Вернуться к новостям</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- NEWS PAGE 2 -->
+  <div id="page-news-2" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="news-hero__tag">Событие</span>
+        <p class="news-hero__date">7 мая 2026</p>
+        <h1>Завершение семестра и праздник для мужской команды</h1>
+        <p class="inner-hero__lead">Founder's Hub закрыл учебный семестр ярким мероприятием и поздравил мужской коллектив с праздником 7 мая.</p>
+      </div>
+    </div>
+
+    <section class="news-article">
+      <div class="news-article__inner">
+        <p>Весенний семестр 2026 года стал насыщенным для Founder's Hub: воркшопы, проектная работа, нетворкинг-встречи и многое другое. Мы завершили его достойно — собравшись всей командой на финальное мероприятие.</p>
+        <p>7 мая — особая дата для мужской части нашей команды. В этот день мы поздравили коллег, вручили подарки и сертификаты в знак признания их вклада в развитие организации.</p>
+        <p>Это не просто праздник — это момент, когда команда остановилась, чтобы отметить путь, пройденный вместе. Впереди новый сезон, новые проекты и новые победы Founder's Hub.</p>
+        <blockquote class="news-callout">Благодарим каждого участника за вклад в этот семестр. До встречи в новом сезоне!</blockquote>
+      </div>
+    </section>
+
+    <section class="news-back">
+      <div class="container">
+        <button type="button" class="news-back__btn" data-go-home>← Вернуться к новостям</button>
+      </div>
+    </section>
+  </div>
+
   <script>
     const routes = {
       'directions/education': 'page-dir-1',
       'directions/projects':  'page-dir-2',
       'directions/network':   'page-dir-3',
+      'news/1': 'page-news-1',
+      'news/2': 'page-news-2',
     };
 
     function navigate(hash) {
-      const all = ['page-home', 'page-dir-1', 'page-dir-2', 'page-dir-3'];
+      const all = ['page-home', 'page-dir-1', 'page-dir-2', 'page-dir-3', 'page-news-1', 'page-news-2'];
       all.forEach(id => document.getElementById(id).style.display = 'none');
       const target = hash ? routes[hash] : null;
       const pageId = target || 'page-home';
@@ -1814,8 +2098,29 @@
         navigate('');
       }
 
-      document.querySelectorAll('[data-route]').forEach(el => {
-        el.addEventListener('click', () => goTo(el.dataset.route));
+      document.querySelectorAll('.direction-card[data-route]').forEach(card => {
+        card.addEventListener('click', () => goTo(card.dataset.route));
+      });
+
+      document.querySelectorAll('.news-card[data-route]').forEach(card => {
+        card.addEventListener('click', () => goTo(card.dataset.route));
+      });
+
+      document.querySelectorAll('.news-card__read-btn[data-route]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goTo(btn.dataset.route);
+        });
+      });
+
+      document.querySelectorAll('[data-go-home]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          goTo('');
+          requestAnimationFrame(() => {
+            const about = document.getElementById('about');
+            if (about) about.scrollIntoView({ behavior: 'smooth' });
+          });
+        });
       });
 
       document.getElementById('nav-back').addEventListener('click', () => {
@@ -1844,16 +2149,10 @@
 
       document.querySelectorAll('.team-card__toggle').forEach(btn => {
         btn.addEventListener('click', () => {
-          const card = btn.closest('.team-card');
-          const full = card.querySelector('.team-card__full-bio');
-          const expanded = card.classList.toggle('is-expanded');
-          if (expanded) {
-            full.style.maxHeight = full.scrollHeight + 'px';
-            btn.textContent = 'Свернуть ↑';
-          } else {
-            full.style.maxHeight = '0';
-            btn.textContent = 'Читать биографию ↓';
-          }
+          const body = btn.closest('.team-card__body');
+          const full = body.querySelector('.team-card__full-bio');
+          const isOpen = full.classList.toggle('is-open');
+          btn.textContent = isOpen ? 'Свернуть ↑' : 'Читать биографию ↓';
         });
       });
     });
