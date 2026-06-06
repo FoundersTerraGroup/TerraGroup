@@ -9,13 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent: #1A1AFF;
-      --black: #0A0A0A;
-      --white: #FFFFFF;
-      --surface: #F5F5F5;
-      --muted: #6B6B6B;
-      --dark-surface: #141414;
-      --accent-hover: #1414d9;
+      --accent: #644620;
+      --accent-hover: #4e3518;
+      --accent-light: #e9dbac;
+      --black: #1a1208;
+      --white: #FDFAF3;
+      --surface: #F5EDD8;
+      --dark-surface: #2a1f0e;
+      --muted: #7a6540;
       --max-width: 1200px;
       --section-pad: clamp(3rem, 6vw, 5rem);
       --radius: 18px;
@@ -53,6 +54,10 @@
       text-decoration: none;
     }
 
+    button {
+      font-family: inherit;
+    }
+
     .container {
       width: 100%;
       max-width: var(--max-width);
@@ -71,7 +76,7 @@
     }
 
     .section-label--light {
-      color: var(--accent);
+      color: var(--accent-light);
     }
 
     h1, h2, h3, .display {
@@ -95,9 +100,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(253, 250, 243, 0.93);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(10, 10, 10, 0.06);
+      border-bottom: 1px solid rgba(26, 18, 8, 0.06);
     }
 
     .nav__inner {
@@ -108,6 +113,30 @@
       padding: 1rem clamp(1.25rem, 4vw, 2rem);
       max-width: var(--max-width);
       margin: 0 auto;
+    }
+
+    .nav__brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__back {
+      display: none;
+      align-items: center;
+      font-family: 'Onest', sans-serif;
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0;
+      margin-right: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav__back:hover {
+      opacity: 0.7;
     }
 
     .nav__logo {
@@ -185,13 +214,13 @@
 
     .btn--primary:hover {
       background: var(--accent-hover);
-      box-shadow: 0 8px 24px rgba(26, 26, 255, 0.35);
+      box-shadow: 0 8px 24px rgba(100, 70, 32, 0.35);
     }
 
     .btn--secondary {
       background: transparent;
       color: var(--black);
-      border: 1.5px solid rgba(10, 10, 10, 0.15);
+      border: 1.5px solid rgba(26, 18, 8, 0.15);
     }
 
     .btn--secondary:hover {
@@ -224,7 +253,7 @@
       font-weight: 500;
       color: var(--muted);
       padding: 0.5rem 1rem;
-      border: 1.5px solid rgba(10, 10, 10, 0.12);
+      border: 1.5px solid rgba(26, 18, 8, 0.12);
       border-radius: 999px;
       margin-bottom: 1.5rem;
     }
@@ -260,7 +289,7 @@
       flex-wrap: wrap;
       gap: 1.5rem 2.5rem;
       padding-top: 1.75rem;
-      border-top: 1px solid rgba(10, 10, 10, 0.1);
+      border-top: 1px solid rgba(26, 18, 8, 0.1);
     }
 
     .hero__stat {
@@ -286,7 +315,7 @@
 
     .hero__card {
       position: relative;
-      background: var(--accent);
+      background: linear-gradient(135deg, #644620 0%, #3d2910 50%, #1a1208 100%);
       border-radius: var(--radius);
       min-height: 380px;
       overflow: hidden;
@@ -299,20 +328,20 @@
 
     .hero__card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 24px 48px rgba(26, 26, 255, 0.3);
+      box-shadow: 0 24px 48px rgba(100, 70, 32, 0.3);
     }
 
     .hero__card-pattern {
       position: absolute;
       inset: 0;
-      opacity: 0.12;
+      opacity: 0.1;
       pointer-events: none;
     }
 
     .hero__card-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 10, 0.45) 100%);
+      background: linear-gradient(180deg, transparent 30%, rgba(26, 18, 8, 0.45) 100%);
       pointer-events: none;
     }
 
@@ -370,7 +399,7 @@
     }
 
     .about__logo-card:hover {
-      box-shadow: 0 12px 40px rgba(10, 10, 10, 0.08);
+      box-shadow: 0 12px 40px rgba(26, 18, 8, 0.08);
     }
 
     .about__logo-text {
@@ -429,24 +458,32 @@
 
     .direction-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(10, 10, 10, 0.1);
+      box-shadow: 0 16px 40px rgba(26, 18, 8, 0.1);
     }
 
     .direction-card__visual {
       position: relative;
       height: 160px;
-      background: linear-gradient(135deg, var(--accent) 0%, #4d4dff 50%, #0a0a0a 100%);
+      background: linear-gradient(135deg, #644620 0%, #8a6030 50%, #1a1208 100%);
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       padding: 1.25rem;
     }
 
+    .direction-card__visual--2 {
+      background: linear-gradient(135deg, #1a1208 0%, #644620 60%, #8a6030 100%);
+    }
+
+    .direction-card__visual--3 {
+      background: linear-gradient(135deg, #8a6030 0%, #644620 40%, #1a1208 100%);
+    }
+
     .direction-card__num {
       font-family: 'Unbounded', sans-serif;
       font-weight: 900;
       font-size: 2.5rem;
-      color: rgba(255, 255, 255, 0.25);
+      color: rgba(253, 250, 243, 0.25);
       line-height: 1;
     }
 
@@ -454,13 +491,15 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(253, 250, 243, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--white);
       font-size: 1.25rem;
-      transition: background var(--transition), transform var(--transition);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), color var(--transition);
     }
 
     .direction-card:hover .direction-card__arrow {
@@ -478,6 +517,17 @@
       font-weight: 700;
       font-size: 1rem;
       margin-bottom: 0.5rem;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      color: var(--black);
+      transition: color var(--transition);
+    }
+
+    .direction-card__title:hover {
+      color: var(--accent);
     }
 
     .direction-card__desc {
@@ -508,7 +558,7 @@
     .whom-card:hover {
       background: var(--white);
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(10, 10, 10, 0.08);
+      box-shadow: 0 12px 32px rgba(26, 18, 8, 0.08);
     }
 
     .whom-card__num {
@@ -543,7 +593,7 @@
     /* HOW TO JOIN */
     .join {
       padding: var(--section-pad) 0;
-      background: var(--black);
+      background: #1a1208;
       color: var(--white);
     }
 
@@ -560,7 +610,7 @@
 
     .join__desc {
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(253, 250, 243, 0.65);
       line-height: 1.75;
       margin-bottom: 2rem;
       max-width: 28rem;
@@ -588,7 +638,7 @@
       font-family: 'Unbounded', sans-serif;
       font-weight: 700;
       font-size: 0.75rem;
-      color: var(--accent);
+      color: var(--accent-light);
       margin-bottom: 0.35rem;
     }
 
@@ -602,7 +652,7 @@
 
     .join__step-desc {
       font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgba(253, 250, 243, 0.55);
       line-height: 1.55;
     }
 
@@ -633,12 +683,16 @@
 
     .team-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(10, 10, 10, 0.1);
+      box-shadow: 0 16px 40px rgba(26, 18, 8, 0.1);
     }
 
     .team-card__photo {
       height: 220px;
-      background: linear-gradient(145deg, #1a1aff 0%, #0a0a0a 70%);
+      background: linear-gradient(145deg, #644620 0%, #1a1208 70%);
+    }
+
+    .team-card__photo--2 {
+      background: linear-gradient(145deg, #1a1208 0%, #644620 50%);
     }
 
     .team-card__body {
@@ -667,9 +721,43 @@
       line-height: 1.6;
     }
 
+    .team-card__full-bio {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease, margin 0.4s ease, border-color 0.4s ease;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      border-top: 1px solid transparent;
+    }
+
+    .team-card.is-expanded .team-card__full-bio {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top-color: var(--accent-light);
+    }
+
+    .team-card__toggle {
+      display: block;
+      font-family: 'Onest', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 10px 0 0;
+      transition: opacity var(--transition);
+    }
+
+    .team-card__toggle:hover {
+      opacity: 0.7;
+    }
+
     /* FOOTER */
     .footer {
-      background: var(--black);
+      background: #1a1208;
       color: var(--white);
       padding: 3rem 0;
       text-align: center;
@@ -683,12 +771,380 @@
     }
 
     .footer__logo span {
-      color: var(--accent);
+      color: var(--accent-light);
     }
 
     .footer__copy {
       font-size: 0.8125rem;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(253, 250, 243, 0.45);
+    }
+
+    /* INNER PAGES */
+    .inner-hero {
+      background: var(--accent-light);
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+    }
+
+    .inner-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+
+    .inner-hero__lead {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      max-width: 42rem;
+      line-height: 1.75;
+    }
+
+    .inner-block {
+      padding: var(--section-pad) 0;
+    }
+
+    .inner-block--white {
+      background: var(--white);
+    }
+
+    .inner-block--surface {
+      background: var(--surface);
+    }
+
+    .inner-block h2 {
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .inner-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+
+    .inner-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--black);
+    }
+
+    .numbered-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .numbered-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+    }
+
+    .numbered-list__num {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 1.75rem;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 1.75rem 1.5rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(26, 18, 8, 0.08);
+    }
+
+    .feature-card__icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card__desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .timeline__item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1rem;
+      padding-left: 1.25rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .timeline__badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .timeline__title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .timeline__status {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 0.25rem 0.625rem;
+      border-radius: 999px;
+      background: var(--surface);
+    }
+
+    .stepper {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .stepper__item {
+      padding-left: 1.25rem;
+      padding-bottom: 1.5rem;
+      border-left: 3px solid var(--accent);
+      margin-left: 0.25rem;
+    }
+
+    .stepper__item:last-child {
+      padding-bottom: 0;
+    }
+
+    .stepper__num {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .stepper__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .stepper__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .icon-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .icon-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .icon-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(26, 18, 8, 0.08);
+    }
+
+    .icon-card__icon {
+      font-size: 1.35rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .icon-card__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .icon-card__desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .project-scroll {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .project-scroll::-webkit-scrollbar-thumb {
+      background: var(--accent-light);
+      border-radius: 3px;
+    }
+
+    .project-card {
+      flex: 0 0 min(300px, 85vw);
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      background: linear-gradient(145deg, #644620 0%, #3d2910 50%, #1a1208 100%);
+      color: var(--white);
+      transition: transform var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .project-card__tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(233, 219, 172, 0.2);
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card__name {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card__desc {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .project-card__team {
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.65;
+    }
+
+    .community-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .community-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 1.75rem 1.5rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .community-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(26, 18, 8, 0.08);
+    }
+
+    .community-card__emoji {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .community-card__title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .community-card__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .pull-quote {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .pull-quote__mark {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .pull-quote__text {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 3vw, 1.625rem);
+      line-height: 1.45;
+      margin-bottom: 1.25rem;
+    }
+
+    .pull-quote__attr {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .inner-cta {
+      background: #1a1208;
+      padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+      text-align: center;
+    }
+
+    .inner-cta h2 {
+      color: var(--white);
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      margin-bottom: 1.5rem;
     }
 
     /* RESPONSIVE */
@@ -715,13 +1171,13 @@
         left: 0;
         right: 0;
         background: var(--white);
-        border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+        border-bottom: 1px solid rgba(26, 18, 8, 0.08);
         padding: 1rem clamp(1.25rem, 4vw, 2rem) 1.5rem;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
         display: none;
-        box-shadow: 0 12px 24px rgba(10, 10, 10, 0.06);
+        box-shadow: 0 12px 24px rgba(26, 18, 8, 0.06);
       }
 
       .nav__toggle:checked ~ .nav__menu {
@@ -737,7 +1193,7 @@
 
       .nav__links li {
         width: 100%;
-        border-bottom: 1px solid rgba(10, 10, 10, 0.06);
+        border-bottom: 1px solid rgba(26, 18, 8, 0.06);
       }
 
       .nav__links a {
@@ -752,7 +1208,7 @@
       }
 
       .nav {
-        position: relative;
+        position: sticky;
       }
 
       .nav__inner {
@@ -797,6 +1253,22 @@
       .team__grid {
         grid-template-columns: 1fr;
       }
+
+      .inner-2col {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .icon-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .community-cards {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (min-width: 769px) {
@@ -812,7 +1284,10 @@
 
   <header class="nav">
     <div class="nav__inner">
-      <a href="#" class="nav__logo">Founder's <span class="nav__logo-hub">Hub</span></a>
+      <div class="nav__brand">
+        <button id="nav-back" class="nav__back" type="button" style="display:none">← Назад</button>
+        <a href="#" class="nav__logo" id="nav-logo">Founder's <span class="nav__logo-hub">Hub</span></a>
+      </div>
       <input type="checkbox" id="nav-toggle" class="nav__toggle" aria-hidden="true">
       <label for="nav-toggle" class="nav__burger" aria-label="Меню">
         <span></span>
@@ -820,229 +1295,574 @@
         <span></span>
       </label>
       <div class="nav__menu">
-        <ul class="nav__links">
+        <ul class="nav__links" id="nav-links">
           <li><a href="#about">О нас</a></li>
           <li><a href="#directions">Направления</a></li>
           <li><a href="#join">Как вступить</a></li>
           <li><a href="#team">Команда</a></li>
         </ul>
-        <a href="#join" class="btn btn--primary btn--nav">Вступить в Founder's Hub</a>
+        <a href="#join" class="btn btn--primary btn--nav" id="nav-cta">Вступить в Founder's Hub</a>
       </div>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero__grid">
-        <div class="hero__left">
-          <span class="hero__badge">Студенческая организация Narxoz University</span>
-          <h1>Где студенты становятся <span class="accent-text">основателями</span></h1>
-          <p class="hero__desc">
-            Founder's Hub — пространство, где студенты Narxoz развивают лидерство, запускают проекты и строят сообщество будущих основателей.
-            Присоединяйся к тем, кто не ждёт идеального момента, а создаёт его сам.
-          </p>
-          <div class="hero__actions">
-            <a href="#join" class="btn btn--primary">Вступить в Founder's Hub →</a>
-            <a href="#about" class="btn btn--secondary">Узнать больше</a>
-          </div>
-          <div class="hero__stats">
-            <div class="hero__stat">
-              <span class="hero__stat-num">50+</span>
-              <span class="hero__stat-label">Участников</span>
+  <div id="page-home">
+    <section class="hero">
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__left">
+            <span class="hero__badge">Студенческая организация Narxoz University</span>
+            <h1>Где студенты становятся <span class="accent-text">основателями</span></h1>
+            <p class="hero__desc">
+              Founder's Hub — пространство, где студенты Narxoz развивают лидерство, запускают проекты и строят сообщество будущих основателей.
+              Присоединяйся к тем, кто не ждёт идеального момента, а создаёт его сам.
+            </p>
+            <div class="hero__actions">
+              <a href="#join" class="btn btn--primary">Вступить в Founder's Hub →</a>
+              <a href="#about" class="btn btn--secondary">Узнать больше</a>
             </div>
-            <div class="hero__stat">
-              <span class="hero__stat-num">3</span>
-              <span class="hero__stat-label">Направления</span>
+            <div class="hero__stats">
+              <div class="hero__stat">
+                <span class="hero__stat-num">50+</span>
+                <span class="hero__stat-label">Участников</span>
+              </div>
+              <div class="hero__stat">
+                <span class="hero__stat-num">3</span>
+                <span class="hero__stat-label">Направления</span>
+              </div>
+              <div class="hero__stat">
+                <span class="hero__stat-num">2+</span>
+                <span class="hero__stat-label">Года</span>
+              </div>
             </div>
-            <div class="hero__stat">
-              <span class="hero__stat-num">2+</span>
-              <span class="hero__stat-label">Года</span>
+          </div>
+          <div class="hero__card">
+            <svg class="hero__card-pattern" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <pattern id="geo" width="60" height="60" patternUnits="userSpaceOnUse">
+                  <circle cx="30" cy="30" r="28" fill="none" stroke="white" stroke-width="1"/>
+                  <line x1="0" y1="0" x2="60" y2="60" stroke="white" stroke-width="0.5"/>
+                  <line x1="60" y1="0" x2="0" y2="60" stroke="white" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#geo)"/>
+            </svg>
+            <div class="hero__card-overlay"></div>
+            <div class="hero__card-content">
+              <p class="hero__card-label">Narxoz × Founder's Hub</p>
+              <p class="hero__card-year">2025</p>
+              <p class="hero__card-sub">Набор открыт — присоединяйся</p>
             </div>
           </div>
         </div>
-        <div class="hero__card">
-          <svg class="hero__card-pattern" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="geo" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="30" cy="30" r="28" fill="none" stroke="white" stroke-width="1"/>
-                <line x1="0" y1="0" x2="60" y2="60" stroke="white" stroke-width="0.5"/>
-                <line x1="60" y1="0" x2="0" y2="60" stroke="white" stroke-width="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#geo)"/>
-          </svg>
-          <div class="hero__card-overlay"></div>
-          <div class="hero__card-content">
-            <p class="hero__card-label">Narxoz × Founder's Hub</p>
-            <p class="hero__card-year">2025</p>
-            <p class="hero__card-sub">Набор открыт — присоединяйся</p>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about__grid">
+          <div class="about__left">
+            <span class="section-label">О нас</span>
+            <h2>Что такое Founder's Hub?</h2>
+            <div class="about__logo-card">
+              <p class="about__logo-text">Founder's<br><span class="accent-text">Hub</span></p>
+            </div>
+          </div>
+          <div class="about__paragraphs">
+            <p>Founder's Hub — пространство, где студенты Narxoz развивают лидерские навыки и предпринимательское мышление.</p>
+            <p>Организация объединяет тех, кто хочет не просто учиться, но и создавать проекты, строить сети и расти как профессионал.</p>
+            <p>В первую очередь Founder's Hub для тех, кто готов брать ответственность, действовать и менять среду вокруг себя.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about__grid">
-        <div class="about__left">
-          <span class="section-label">О нас</span>
-          <h2>Что такое Founder's Hub?</h2>
-          <div class="about__logo-card">
-            <p class="about__logo-text">Founder's<br><span class="accent-text">Hub</span></p>
+    <section class="directions" id="directions">
+      <div class="container">
+        <div class="directions__header">
+          <div>
+            <span class="section-label">Направления</span>
+            <h2>Что предлагает Founder's Hub?</h2>
           </div>
+          <p class="directions__sub">Три трека развития для каждого этапа твоего пути.</p>
         </div>
-        <div class="about__paragraphs">
-          <p>Founder's Hub — пространство, где студенты Narxoz развивают лидерские навыки и предпринимательское мышление.</p>
-          <p>Организация объединяет тех, кто хочет не просто учиться, но и создавать проекты, строить сети и расти как профессионал.</p>
-          <p>В первую очередь Founder's Hub для тех, кто готов брать ответственность, действовать и менять среду вокруг себя.</p>
+        <div class="directions__grid">
+          <article class="direction-card">
+            <div class="direction-card__visual">
+              <span class="direction-card__num">01</span>
+              <button type="button" class="direction-card__arrow" data-route="directions/education" aria-label="Открыть направление">↗</button>
+            </div>
+            <div class="direction-card__body">
+              <button type="button" class="direction-card__title" data-route="directions/education">Образование и воркшопы</button>
+              <p class="direction-card__desc">Регулярные сессии, лекции и мастер-классы от практиков и экспертов.</p>
+            </div>
+          </article>
+          <article class="direction-card">
+            <div class="direction-card__visual direction-card__visual--2">
+              <span class="direction-card__num">02</span>
+              <button type="button" class="direction-card__arrow" data-route="directions/projects" aria-label="Открыть направление">↗</button>
+            </div>
+            <div class="direction-card__body">
+              <button type="button" class="direction-card__title" data-route="directions/projects">Проектная деятельность</button>
+              <p class="direction-card__desc">Реальные проекты внутри организации: от идеи до готового продукта.</p>
+            </div>
+          </article>
+          <article class="direction-card">
+            <div class="direction-card__visual direction-card__visual--3">
+              <span class="direction-card__num">03</span>
+              <button type="button" class="direction-card__arrow" data-route="directions/network" aria-label="Открыть направление">↗</button>
+            </div>
+            <div class="direction-card__body">
+              <button type="button" class="direction-card__title" data-route="directions/network">Нетворкинг и сообщество</button>
+              <p class="direction-card__desc">Комьюнити студентов, выпускников и менторов для роста и поддержки.</p>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="directions" id="directions">
-    <div class="container">
-      <div class="directions__header">
-        <div>
-          <span class="section-label">Направления</span>
-          <h2>Что предлагает Founder's Hub?</h2>
+    <section class="for-whom">
+      <div class="container">
+        <span class="section-label">Для кого</span>
+        <h2>Кому подойдёт?</h2>
+        <div class="for-whom__grid">
+          <article class="whom-card">
+            <div class="whom-card__num">01</div>
+            <h3 class="whom-card__title">Студентам с амбициями</h3>
+            <p class="whom-card__desc">Хочешь расти — мы дадим среду и инструменты.</p>
+          </article>
+          <article class="whom-card">
+            <div class="whom-card__num">02</div>
+            <h3 class="whom-card__title">Будущим предпринимателям</h3>
+            <p class="whom-card__desc">Развивай идею и найди единомышленников внутри университета.</p>
+          </article>
+          <article class="whom-card">
+            <div class="whom-card__num">03</div>
+            <h3 class="whom-card__title">Лидерам и организаторам</h3>
+            <p class="whom-card__desc">Прокачай управленческие навыки на реальных задачах.</p>
+          </article>
+          <article class="whom-card">
+            <div class="whom-card__num">04</div>
+            <h3 class="whom-card__title">Тем, кто ищет сообщество</h3>
+            <p class="whom-card__desc">Найди людей, которые думают так же, как ты.</p>
+          </article>
         </div>
-        <p class="directions__sub">Три трека развития для каждого этапа твоего пути.</p>
       </div>
-      <div class="directions__grid">
-        <article class="direction-card">
-          <div class="direction-card__visual">
-            <span class="direction-card__num">01</span>
-            <span class="direction-card__arrow" aria-hidden="true">↗</span>
-          </div>
-          <div class="direction-card__body">
-            <h3 class="direction-card__title">Образование и воркшопы</h3>
-            <p class="direction-card__desc">Регулярные сессии, лекции и мастер-классы от практиков и экспертов.</p>
-          </div>
-        </article>
-        <article class="direction-card">
-          <div class="direction-card__visual" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1aff 60%, #4d4dff 100%);">
-            <span class="direction-card__num">02</span>
-            <span class="direction-card__arrow" aria-hidden="true">↗</span>
-          </div>
-          <div class="direction-card__body">
-            <h3 class="direction-card__title">Проектная деятельность</h3>
-            <p class="direction-card__desc">Реальные проекты внутри организации: от идеи до готового продукта.</p>
-          </div>
-        </article>
-        <article class="direction-card">
-          <div class="direction-card__visual" style="background: linear-gradient(135deg, #4d4dff 0%, #1a1aff 40%, #0a0a0a 100%);">
-            <span class="direction-card__num">03</span>
-            <span class="direction-card__arrow" aria-hidden="true">↗</span>
-          </div>
-          <div class="direction-card__body">
-            <h3 class="direction-card__title">Нетворкинг и сообщество</h3>
-            <p class="direction-card__desc">Комьюнити студентов, выпускников и менторов для роста и поддержки.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="for-whom">
-    <div class="container">
-      <span class="section-label">Для кого</span>
-      <h2>Кому подойдёт?</h2>
-      <div class="for-whom__grid">
-        <article class="whom-card">
-          <div class="whom-card__num">01</div>
-          <h3 class="whom-card__title">Студентам с амбициями</h3>
-          <p class="whom-card__desc">Хочешь расти — мы дадим среду и инструменты.</p>
-        </article>
-        <article class="whom-card">
-          <div class="whom-card__num">02</div>
-          <h3 class="whom-card__title">Будущим предпринимателям</h3>
-          <p class="whom-card__desc">Развивай идею и найди единомышленников внутри университета.</p>
-        </article>
-        <article class="whom-card">
-          <div class="whom-card__num">03</div>
-          <h3 class="whom-card__title">Лидерам и организаторам</h3>
-          <p class="whom-card__desc">Прокачай управленческие навыки на реальных задачах.</p>
-        </article>
-        <article class="whom-card">
-          <div class="whom-card__num">04</div>
-          <h3 class="whom-card__title">Тем, кто ищет сообщество</h3>
-          <p class="whom-card__desc">Найди людей, которые думают так же, как ты.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="join" id="join">
-    <div class="container">
-      <span class="section-label section-label--light">Как вступить</span>
-      <div class="join__grid">
-        <div class="join__left">
-          <h2>Как это работает?</h2>
-          <p class="join__desc">
-            Вступление в Founder's Hub — простой и прозрачный процесс. Мы ищем мотивированных студентов, готовых учиться, действовать и развивать организацию вместе с командой.
-          </p>
-          <a href="#join" class="btn btn--primary">Начать сейчас →</a>
-        </div>
-        <div class="join__steps-card">
-          <div class="join__step">
-            <p class="join__step-num">01</p>
-            <p class="join__step-title">Заполни анкету</p>
-            <p class="join__step-desc">Расскажи о себе и своих целях.</p>
+    <section class="join" id="join">
+      <div class="container">
+        <span class="section-label section-label--light">Как вступить</span>
+        <div class="join__grid">
+          <div class="join__left">
+            <h2>Как это работает?</h2>
+            <p class="join__desc">
+              Вступление в Founder's Hub — простой и прозрачный процесс. Мы ищем мотивированных студентов, готовых учиться, действовать и развивать организацию вместе с командой.
+            </p>
+            <a href="#join" class="btn btn--primary">Начать сейчас →</a>
           </div>
-          <div class="join__step">
-            <p class="join__step-num">02</p>
-            <p class="join__step-title">Пройди собеседование</p>
-            <p class="join__step-desc">Коротко поговори с командой.</p>
-          </div>
-          <div class="join__step">
-            <p class="join__step-num">03</p>
-            <p class="join__step-title">Вступи в команду</p>
-            <p class="join__step-desc">Стань частью Founder's Hub.</p>
-          </div>
-          <div class="join__step">
-            <p class="join__step-num">04</p>
-            <p class="join__step-title">Развивайся</p>
-            <p class="join__step-desc">Участвуй, создавай, расти.</p>
+          <div class="join__steps-card">
+            <div class="join__step">
+              <p class="join__step-num">01</p>
+              <p class="join__step-title">Заполни анкету</p>
+              <p class="join__step-desc">Расскажи о себе и своих целях.</p>
+            </div>
+            <div class="join__step">
+              <p class="join__step-num">02</p>
+              <p class="join__step-title">Пройди собеседование</p>
+              <p class="join__step-desc">Коротко поговори с командой.</p>
+            </div>
+            <div class="join__step">
+              <p class="join__step-num">03</p>
+              <p class="join__step-title">Вступи в команду</p>
+              <p class="join__step-desc">Стань частью Founder's Hub.</p>
+            </div>
+            <div class="join__step">
+              <p class="join__step-num">04</p>
+              <p class="join__step-title">Развивайся</p>
+              <p class="join__step-desc">Участвуй, создавай, расти.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="team" id="team">
-    <div class="container">
-      <span class="section-label">Команда</span>
-      <h2>Команда Founder's Hub</h2>
-      <p class="team__sub">Студенты, которые строят организацию изнутри.</p>
-      <div class="team__grid">
-        <article class="team-card">
-          <div class="team-card__photo"></div>
-          <div class="team-card__body">
-            <p class="team-card__role">Президент</p>
-            <h3 class="team-card__name">Имя Фамилия</h3>
-            <p class="team-card__bio">Развивает стратегию и видение организации.</p>
-          </div>
-        </article>
-        <article class="team-card">
-          <div class="team-card__photo" style="background: linear-gradient(145deg, #0a0a0a 0%, #1a1aff 50%);"></div>
-          <div class="team-card__body">
-            <p class="team-card__role">Директор по операциям</p>
-            <h3 class="team-card__name">Имя Фамилия</h3>
-            <p class="team-card__bio">Отвечает за процессы и команду.</p>
-          </div>
-        </article>
+    <section class="team" id="team">
+      <div class="container">
+        <span class="section-label">Команда</span>
+        <h2>Команда Founder's Hub</h2>
+        <p class="team__sub">Студенты, которые строят организацию изнутри.</p>
+        <div class="team__grid">
+          <article class="team-card">
+            <div class="team-card__photo"></div>
+            <div class="team-card__body">
+              <p class="team-card__role">Президент</p>
+              <h3 class="team-card__name">Амиржан Жампеисов</h3>
+              <p class="team-card__bio">Развивает стратегию и видение организации.</p>
+              <div class="team-card__full-bio">
+                Амиржан возглавляет Founder's Hub с момента основания. Отвечает за стратегическое направление, внешние партнёрства и культуру организации. Студент факультета бизнеса Narxoz University, ментор стартап-команд.
+              </div>
+              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
+            </div>
+          </article>
+          <article class="team-card">
+            <div class="team-card__photo team-card__photo--2"></div>
+            <div class="team-card__body">
+              <p class="team-card__role">Операционный директор</p>
+              <h3 class="team-card__name">Богдан Навроцки</h3>
+              <p class="team-card__bio">Отвечает за процессы и команду.</p>
+              <div class="team-card__full-bio">
+                Богдан выстраивает внутренние процессы, HR-систему и межотдельную координацию Founder's Hub. Обеспечивает работу организации в соответствии с Уставом и операционными стандартами.
+              </div>
+              <button type="button" class="team-card__toggle">Читать биографию ↓</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer__logo">Founder's <span>Hub</span></p>
+        <p class="footer__copy">© 2025 Founder's Hub — Narxoz University, Almaty</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 1: Education -->
+  <div id="page-dir-1" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="section-label">Направление 01</span>
+        <h1>Образование и воркшопы</h1>
+        <p class="inner-hero__lead">Знания, которые сразу применяются на практике. Мы приглашаем практиков, запускаем воркшопы и создаём среду непрерывного обучения.</p>
       </div>
     </div>
-  </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p class="footer__logo">Founder's <span>Hub</span></p>
-      <p class="footer__copy">© 2025 Founder's Hub — Narxoz University, Almaty</p>
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <div class="inner-2col">
+          <div>
+            <h2>Что это?</h2>
+            <p class="inner-text">Founder's Hub организует регулярные образовательные мероприятия для студентов Narxoz. Форматы варьируются от коротких воркшопов до полноценных курсов с сертификацией.</p>
+          </div>
+          <ol class="numbered-list">
+            <li><span class="numbered-list__num">01</span> Воркшопы от практикующих предпринимателей</li>
+            <li><span class="numbered-list__num">02</span> Лекции приглашённых спикеров</li>
+            <li><span class="numbered-list__num">03</span> Мини-курсы по hard и soft skills</li>
+            <li><span class="numbered-list__num">04</span> Совместные разборы кейсов</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--surface">
+      <div class="container">
+        <h2>Форматы</h2>
+        <div class="feature-cards">
+          <article class="feature-card">
+            <div class="feature-card__icon">✦</div>
+            <h3 class="feature-card__title">Воркшоп</h3>
+            <p class="feature-card__desc">2–3 часа, практический формат, малая группа</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">◈</div>
+            <h3 class="feature-card__title">Лекция</h3>
+            <p class="feature-card__desc">Открытое мероприятие, 60–90 мин, Q&amp;A</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">❋</div>
+            <h3 class="feature-card__title">Курс</h3>
+            <p class="feature-card__desc">4–6 недель, домашние задания, итоговый проект</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <h2>Ближайшие мероприятия</h2>
+        <div class="timeline">
+          <div class="timeline__item">
+            <span class="timeline__badge">Скоро</span>
+            <span class="timeline__title">Воркшоп по публичным выступлениям</span>
+            <span class="timeline__status">Анонс</span>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__badge">Скоро</span>
+            <span class="timeline__title">Лекция: Как построить стартап с нуля</span>
+            <span class="timeline__status">Анонс</span>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__badge">Скоро</span>
+            <span class="timeline__title">Мини-курс по продуктовому мышлению</span>
+            <span class="timeline__status">Анонс</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-cta">
+      <div class="container">
+        <h2>Хочешь стать частью этого?</h2>
+        <button type="button" class="btn btn--primary" data-home-join>Вступить в Founder's Hub →</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAGE 2: Projects -->
+  <div id="page-dir-2" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="section-label">Направление 02</span>
+        <h1>Проектная деятельность</h1>
+        <p class="inner-hero__lead">От идеи до готового продукта — внутри Founder's Hub. Мы даём структуру, команду и ресурсы для запуска реального проекта.</p>
+      </div>
     </div>
-  </footer>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <div class="inner-2col">
+          <div>
+            <h2>Как это устроено?</h2>
+            <p class="inner-text">Проектная деятельность — ядро Founder's Hub. Каждая команда проходит полный цикл: от формулировки идеи до создания MVP и первой обратной связи от рынка.</p>
+          </div>
+          <div class="stepper">
+            <div class="stepper__item">
+              <p class="stepper__num">01</p>
+              <p class="stepper__title">Идея</p>
+              <p class="stepper__desc">Формулируешь проблему и решение</p>
+            </div>
+            <div class="stepper__item">
+              <p class="stepper__num">02</p>
+              <p class="stepper__title">Команда</p>
+              <p class="stepper__desc">Собираешь или находишь единомышленников</p>
+            </div>
+            <div class="stepper__item">
+              <p class="stepper__num">03</p>
+              <p class="stepper__title">MVP</p>
+              <p class="stepper__desc">Создаёшь минимальный рабочий продукт</p>
+            </div>
+            <div class="stepper__item">
+              <p class="stepper__num">04</p>
+              <p class="stepper__title">Обратная связь</p>
+              <p class="stepper__desc">Тестируешь с реальными пользователями</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--surface">
+      <div class="container">
+        <h2>Что получает команда?</h2>
+        <div class="icon-cards">
+          <article class="icon-card">
+            <div class="icon-card__icon">◎</div>
+            <h3 class="icon-card__title">Менторская поддержка</h3>
+            <p class="icon-card__desc">Доступ к опытным наставникам</p>
+          </article>
+          <article class="icon-card">
+            <div class="icon-card__icon">◈</div>
+            <h3 class="icon-card__title">Ресурсы организации</h3>
+            <p class="icon-card__desc">Пространство, инструменты, связи</p>
+          </article>
+          <article class="icon-card">
+            <div class="icon-card__icon">✦</div>
+            <h3 class="icon-card__title">Питч-практика</h3>
+            <p class="icon-card__desc">Регулярные демо-дни внутри Hub</p>
+          </article>
+          <article class="icon-card">
+            <div class="icon-card__icon">❋</div>
+            <h3 class="icon-card__title">Нетворк</h3>
+            <p class="icon-card__desc">Выход на экосистему Narxoz и Technopark</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <h2>Текущие проекты</h2>
+        <div class="project-scroll">
+          <article class="project-card">
+            <span class="project-card__tag">В разработке</span>
+            <h3 class="project-card__name">Проект #1</h3>
+            <p class="project-card__desc">Описание появится в ближайшее время.</p>
+            <p class="project-card__team">Команда: 3 чел.</p>
+          </article>
+          <article class="project-card">
+            <span class="project-card__tag">В разработке</span>
+            <h3 class="project-card__name">Проект #2</h3>
+            <p class="project-card__desc">Описание появится в ближайшее время.</p>
+            <p class="project-card__team">Команда: 3 чел.</p>
+          </article>
+          <article class="project-card">
+            <span class="project-card__tag">В разработке</span>
+            <h3 class="project-card__name">Проект #3</h3>
+            <p class="project-card__desc">Описание появится в ближайшее время.</p>
+            <p class="project-card__team">Команда: 3 чел.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-cta">
+      <div class="container">
+        <h2>Хочешь стать частью этого?</h2>
+        <button type="button" class="btn btn--primary" data-home-join>Вступить в Founder's Hub →</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAGE 3: Network -->
+  <div id="page-dir-3" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="section-label">Направление 03</span>
+        <h1>Нетворкинг и сообщество</h1>
+        <p class="inner-hero__lead">Люди решают всё. Founder's Hub — это сообщество студентов, выпускников и менторов, объединённых общей целью — расти и создавать.</p>
+      </div>
+    </div>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <h2>Кто в сообществе?</h2>
+        <div class="community-cards">
+          <article class="community-card">
+            <div class="community-card__emoji">👤</div>
+            <h3 class="community-card__title">Студенты</h3>
+            <p class="community-card__desc">Активные участники, которые развиваются вместе</p>
+          </article>
+          <article class="community-card">
+            <div class="community-card__emoji">🎓</div>
+            <h3 class="community-card__title">Выпускники</h3>
+            <p class="community-card__desc">Менторы и амбассадоры организации</p>
+          </article>
+          <article class="community-card">
+            <div class="community-card__emoji">🤝</div>
+            <h3 class="community-card__title">Партнёры</h3>
+            <p class="community-card__desc">Эксперты и представители бизнеса</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--surface">
+      <div class="container">
+        <div class="inner-2col">
+          <div>
+            <h2>Форматы нетворкинга</h2>
+            <p class="inner-text">Нетворкинг в Founder's Hub — это не просто обмен визитками. Это совместная работа, дискуссии и реальные проекты, которые рождаются из живого общения.</p>
+          </div>
+          <ol class="numbered-list">
+            <li><span class="numbered-list__num">01</span> Общие встречи участников (2× в месяц)</li>
+            <li><span class="numbered-list__num">02</span> Закрытые чаты и каналы сообщества</li>
+            <li><span class="numbered-list__num">03</span> Совместные выезды и неформальные встречи</li>
+            <li><span class="numbered-list__num">04</span> Коллаборации с другими студенческими орг.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <blockquote class="pull-quote">
+          <p class="pull-quote__mark">"</p>
+          <p class="pull-quote__text">Твой следующий партнёр по бизнесу сидит рядом с тобой на паре.</p>
+          <cite class="pull-quote__attr">— Founder's Hub, Narxoz University</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="inner-cta">
+      <div class="container">
+        <h2>Хочешь стать частью этого?</h2>
+        <button type="button" class="btn btn--primary" data-home-join>Вступить в Founder's Hub →</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const routes = {
+      'directions/education': 'page-dir-1',
+      'directions/projects':  'page-dir-2',
+      'directions/network':   'page-dir-3',
+    };
+
+    function navigate(hash) {
+      const all = ['page-home', 'page-dir-1', 'page-dir-2', 'page-dir-3'];
+      all.forEach(id => document.getElementById(id).style.display = 'none');
+      const target = hash ? routes[hash] : null;
+      const pageId = target || 'page-home';
+      document.getElementById(pageId).style.display = 'block';
+      document.getElementById('nav-back').style.display = target ? 'inline-flex' : 'none';
+      const navLinks = document.getElementById('nav-links');
+      const navCta = document.getElementById('nav-cta');
+      if (navLinks) navLinks.style.display = target ? 'none' : '';
+      if (navCta) navCta.style.display = target ? 'none' : '';
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('popstate', () => navigate(location.hash.slice(1)));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = location.hash.slice(1);
+      if (routes[hash]) {
+        navigate(hash);
+      } else {
+        navigate('');
+      }
+
+      document.querySelectorAll('[data-route]').forEach(el => {
+        el.addEventListener('click', () => goTo(el.dataset.route));
+      });
+
+      document.getElementById('nav-back').addEventListener('click', () => {
+        if (history.length > 1) {
+          history.back();
+        } else {
+          goTo('');
+        }
+      });
+
+      document.getElementById('nav-logo').addEventListener('click', (e) => {
+        e.preventDefault();
+        goTo('');
+      });
+
+      document.querySelectorAll('[data-home-join]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          history.pushState(null, '', '#join');
+          navigate('');
+          requestAnimationFrame(() => {
+            const join = document.getElementById('join');
+            if (join) join.scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+      });
+
+      document.querySelectorAll('.team-card__toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.team-card');
+          const full = card.querySelector('.team-card__full-bio');
+          const expanded = card.classList.toggle('is-expanded');
+          if (expanded) {
+            full.style.maxHeight = full.scrollHeight + 'px';
+            btn.textContent = 'Свернуть ↑';
+          } else {
+            full.style.maxHeight = '0';
+            btn.textContent = 'Читать биографию ↓';
+          }
+        });
+      });
+    });
+
+    function goTo(hash) {
+      history.pushState(null, '', hash ? '#' + hash : window.location.pathname);
+      navigate(hash);
+    }
+  </script>
 
 </body>
 </html>
