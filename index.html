@@ -571,10 +571,92 @@
       text-align: right;
     }
 
-    .directions__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .dir-slider-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .dir-slider-track {
+      display: flex;
       gap: 1.25rem;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      cursor: grab;
+    }
+
+    .dir-slider-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .dir-slider-track:active {
+      cursor: grabbing;
+    }
+
+    .dir-slider-track .direction-card {
+      flex: 0 0 calc(33.333% - 0.85rem);
+      scroll-snap-align: start;
+      min-width: 0;
+    }
+
+    @media (max-width: 900px) {
+      .dir-slider-track .direction-card {
+        flex: 0 0 calc(50% - 0.625rem);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .dir-slider-track .direction-card {
+        flex: 0 0 85%;
+      }
+    }
+
+    .dir-slider-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 20px;
+    }
+
+    #dir-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .dir-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(100, 70, 32, 0.2);
+      background: var(--white);
+      color: var(--accent);
+      font-size: 1.125rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, opacity 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .dir-arrow:hover:not(:disabled) {
+      background: var(--surface);
+      border-color: var(--accent);
+    }
+
+    .dir-arrow:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    .dir-arrow:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
 
     .direction-card {
@@ -606,6 +688,18 @@
 
     .direction-card__visual--3 {
       background: linear-gradient(135deg, #8a6030 0%, #644620 40%, #1a1208 100%);
+    }
+
+    .direction-card__visual--4 {
+      background: linear-gradient(135deg, #8a6030 0%, #644620 40%, #3d2910 100%);
+    }
+
+    .direction-card__visual--5 {
+      background: linear-gradient(135deg, #3d2910 0%, #8a6030 50%, #644620 100%);
+    }
+
+    .direction-card__visual--6 {
+      background: linear-gradient(135deg, #644620 0%, #1a1208 50%, #8a6030 100%);
     }
 
     .direction-card__num {
@@ -1305,7 +1399,8 @@
       color: var(--black);
     }
 
-    .news-callout {
+    .news-callout,
+    .inner-callout {
       background: var(--surface);
       border-left: 3px solid var(--accent);
       padding: 1.25rem;
@@ -1451,10 +1546,6 @@
         text-align: left;
       }
 
-      .directions__grid {
-        grid-template-columns: 1fr;
-      }
-
       .join__grid {
         grid-template-columns: 1fr;
       }
@@ -1547,8 +1638,12 @@
         gap: 2rem;
       }
 
-      .slider-dots {
+      .slider-dots:not(#dir-dots) {
         display: none !important;
+      }
+
+      #dir-dots.slider-dots {
+        display: flex !important;
       }
 
       #news-slider,
@@ -1612,8 +1707,8 @@
                 <span class="hero__stat-label">Участников</span>
               </div>
               <div class="hero__stat">
-                <span class="hero__stat-num">3</span>
-                <span class="hero__stat-label">Направления</span>
+                <span class="hero__stat-num">6</span>
+                <span class="hero__stat-label">Направлений</span>
               </div>
               <div class="hero__stat">
                 <span class="hero__stat-num">2+</span>
@@ -1712,39 +1807,76 @@
             <span class="section-label">Направления</span>
             <h2>Что предлагает Founder's Hub?</h2>
           </div>
-          <p class="directions__sub">Три трека развития для каждого этапа твоего пути.</p>
+          <p class="directions__sub">Шесть направлений для каждого этапа твоего пути.</p>
         </div>
-        <div class="directions__grid">
-          <article class="direction-card" data-route="directions/education">
-            <div class="direction-card__visual">
-              <span class="direction-card__num">01</span>
-              <span class="direction-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="direction-card__body">
-              <h3 class="direction-card__title">Образование и воркшопы</h3>
-              <p class="direction-card__desc">Регулярные сессии, лекции и мастер-классы от практиков и экспертов.</p>
-            </div>
-          </article>
-          <article class="direction-card" data-route="directions/projects">
-            <div class="direction-card__visual direction-card__visual--2">
-              <span class="direction-card__num">02</span>
-              <span class="direction-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="direction-card__body">
-              <h3 class="direction-card__title">Проектная деятельность</h3>
-              <p class="direction-card__desc">Реальные проекты внутри организации: от идеи до готового продукта.</p>
-            </div>
-          </article>
-          <article class="direction-card" data-route="directions/network">
-            <div class="direction-card__visual direction-card__visual--3">
-              <span class="direction-card__num">03</span>
-              <span class="direction-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="direction-card__body">
-              <h3 class="direction-card__title">Нетворкинг и сообщество</h3>
-              <p class="direction-card__desc">Комьюнити студентов, выпускников и менторов для роста и поддержки.</p>
-            </div>
-          </article>
+        <div class="dir-slider-wrapper" id="dir-slider">
+          <div class="dir-slider-track">
+            <article class="direction-card" data-route="directions/education">
+              <div class="direction-card__visual">
+                <span class="direction-card__num">01</span>
+                <span class="direction-card__arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="direction-card__body">
+                <h3 class="direction-card__title">Образование и воркшопы</h3>
+                <p class="direction-card__desc">Регулярные сессии, лекции и мастер-классы от практиков и экспертов.</p>
+              </div>
+            </article>
+            <article class="direction-card" data-route="directions/projects">
+              <div class="direction-card__visual direction-card__visual--2">
+                <span class="direction-card__num">02</span>
+                <span class="direction-card__arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="direction-card__body">
+                <h3 class="direction-card__title">Проектная деятельность</h3>
+                <p class="direction-card__desc">Реальные проекты внутри организации: от идеи до готового продукта.</p>
+              </div>
+            </article>
+            <article class="direction-card" data-route="directions/network">
+              <div class="direction-card__visual direction-card__visual--3">
+                <span class="direction-card__num">03</span>
+                <span class="direction-card__arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="direction-card__body">
+                <h3 class="direction-card__title">Нетворкинг и сообщество</h3>
+                <p class="direction-card__desc">Комьюнити студентов, выпускников и менторов для роста и поддержки.</p>
+              </div>
+            </article>
+            <article class="direction-card" data-route="directions/marketing">
+              <div class="direction-card__visual direction-card__visual--4">
+                <span class="direction-card__num">04</span>
+                <span class="direction-card__arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="direction-card__body">
+                <h3 class="direction-card__title">Маркетинг на практике</h3>
+                <p class="direction-card__desc">Учись продвигать идеи, бренды и проекты на реальных задачах внутри организации.</p>
+              </div>
+            </article>
+            <article class="direction-card" data-route="directions/hr">
+              <div class="direction-card__visual direction-card__visual--5">
+                <span class="direction-card__num">05</span>
+                <span class="direction-card__arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="direction-card__body">
+                <h3 class="direction-card__title">Прикладной HR</h3>
+                <p class="direction-card__desc">Изучай управление людьми, найм и развитие команды на практике, а не только в теории.</p>
+              </div>
+            </article>
+            <article class="direction-card" data-route="directions/events">
+              <div class="direction-card__visual direction-card__visual--6">
+                <span class="direction-card__num">06</span>
+                <span class="direction-card__arrow" aria-hidden="true">↗</span>
+              </div>
+              <div class="direction-card__body">
+                <h3 class="direction-card__title">Организация мероприятий</h3>
+                <p class="direction-card__desc">Становись лидером и модератором реальных ивентов Founder's Hub от идеи до воплощения.</p>
+              </div>
+            </article>
+          </div>
+          <div class="dir-slider-nav">
+            <button type="button" class="dir-arrow dir-arrow--prev" aria-label="Предыдущее направление" disabled>←</button>
+            <div class="slider-dots" id="dir-dots"></div>
+            <button type="button" class="dir-arrow dir-arrow--next" aria-label="Следующее направление">→</button>
+          </div>
         </div>
       </div>
     </section>
@@ -2129,6 +2261,214 @@
     </section>
   </div>
 
+  <!-- PAGE 4: Marketing -->
+  <div id="page-dir-4" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="section-label">Направление 04</span>
+        <h1>Маркетинг на практике</h1>
+        <p class="inner-hero__lead">Не просто теория — реальные задачи, реальная аудитория, реальный результат. Учись продвигать идеи и проекты прямо внутри Founder's Hub.</p>
+      </div>
+    </div>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <div class="inner-2col">
+          <div>
+            <h2>Что это?</h2>
+            <p class="inner-text">Маркетинг в Founder's Hub — это не курсовые работы. Участники берутся за реальные задачи: продвижение мероприятий, создание контента, построение бренда организации и анализ аудитории.</p>
+          </div>
+          <ol class="numbered-list">
+            <li><span class="numbered-list__num">01</span> SMM и контент-маркетинг</li>
+            <li><span class="numbered-list__num">02</span> Брендинг и визуальная коммуникация</li>
+            <li><span class="numbered-list__num">03</span> Аналитика и работа с аудиторией</li>
+            <li><span class="numbered-list__num">04</span> Продвижение мероприятий и проектов</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--surface">
+      <div class="container">
+        <h2>Направления работы</h2>
+        <div class="feature-cards">
+          <article class="feature-card">
+            <div class="feature-card__icon">✦</div>
+            <h3 class="feature-card__title">Контент</h3>
+            <p class="feature-card__desc">Создание постов, сторис и материалов для соцсетей</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">◈</div>
+            <h3 class="feature-card__title">Бренд</h3>
+            <p class="feature-card__desc">Работа над айдентикой и позиционированием Hub</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">❋</div>
+            <h3 class="feature-card__title">Аналитика</h3>
+            <p class="feature-card__desc">Изучение метрик и эффективности кампаний</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <blockquote class="inner-callout">Твои работы увидит реальная аудитория, а не только преподаватель.</blockquote>
+      </div>
+    </section>
+
+    <section class="inner-cta">
+      <div class="container">
+        <h2>Хочешь стать частью этого?</h2>
+        <button type="button" class="btn btn--primary" data-home-join>Вступить в Founder's Hub →</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAGE 5: HR -->
+  <div id="page-dir-5" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="section-label">Направление 05</span>
+        <h1>Прикладной HR</h1>
+        <p class="inner-hero__lead">Управление людьми — навык, который нельзя получить из учебника. В Founder's Hub ты работаешь с реальными процессами найма, адаптации и развития команды.</p>
+      </div>
+    </div>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <div class="inner-2col">
+          <div>
+            <h2>Как это устроено?</h2>
+            <p class="inner-text">HR-направление Founder's Hub даёт возможность изучить управление персоналом изнутри: от написания вакансий до онбординга новых участников и построения системы мотивации.</p>
+          </div>
+          <div class="stepper">
+            <div class="stepper__item">
+              <p class="stepper__num">01</p>
+              <p class="stepper__title">Рекрутинг</p>
+              <p class="stepper__desc">Поиск и отбор кандидатов в организацию</p>
+            </div>
+            <div class="stepper__item">
+              <p class="stepper__num">02</p>
+              <p class="stepper__title">Онбординг</p>
+              <p class="stepper__desc">Адаптация новых участников</p>
+            </div>
+            <div class="stepper__item">
+              <p class="stepper__num">03</p>
+              <p class="stepper__title">Развитие</p>
+              <p class="stepper__desc">Построение треков роста для команды</p>
+            </div>
+            <div class="stepper__item">
+              <p class="stepper__num">04</p>
+              <p class="stepper__title">Культура</p>
+              <p class="stepper__desc">Формирование среды и ценностей</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--surface">
+      <div class="container">
+        <h2>Что ты освоишь?</h2>
+        <div class="feature-cards">
+          <article class="feature-card">
+            <div class="feature-card__icon">✦</div>
+            <h3 class="feature-card__title">Найм</h3>
+            <p class="feature-card__desc">Практика проведения собеседований</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">◈</div>
+            <h3 class="feature-card__title">Документы</h3>
+            <p class="feature-card__desc">Работа с регламентами и процедурами</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">❋</div>
+            <h3 class="feature-card__title">Команда</h3>
+            <p class="feature-card__desc">Развитие людей и управление конфликтами</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <blockquote class="inner-callout">HR — это не бумаги. Это люди, процессы и культура, которую ты строишь своими руками.</blockquote>
+      </div>
+    </section>
+
+    <section class="inner-cta">
+      <div class="container">
+        <h2>Хочешь стать частью этого?</h2>
+        <button type="button" class="btn btn--primary" data-home-join>Вступить в Founder's Hub →</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAGE 6: Events -->
+  <div id="page-dir-6" style="display:none">
+    <div class="inner-hero">
+      <div class="container">
+        <span class="section-label">Направление 06</span>
+        <h1>Организация мероприятий</h1>
+        <p class="inner-hero__lead">От идеи до аплодисментов. В Founder's Hub ты можешь стать организатором, лидером и модератором реальных ивентов — не в симуляции, а по-настоящему.</p>
+      </div>
+    </div>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <div class="inner-2col">
+          <div>
+            <h2>Как это устроено?</h2>
+            <p class="inner-text">Ивент-направление — одно из самых видимых в Founder's Hub. Участники берут на себя полный цикл организации мероприятий: от концепции и логистики до ведения и разбора результатов.</p>
+          </div>
+          <ol class="numbered-list">
+            <li><span class="numbered-list__num">01</span> Концепция — придумать формат и цель мероприятия</li>
+            <li><span class="numbered-list__num">02</span> Подготовка — логистика, спикеры, площадка, материалы</li>
+            <li><span class="numbered-list__num">03</span> Проведение — модерация и управление на месте</li>
+            <li><span class="numbered-list__num">04</span> Разбор — анализ результатов и обратная связь</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--surface">
+      <div class="container">
+        <h2>Что ты получишь?</h2>
+        <div class="feature-cards">
+          <article class="feature-card">
+            <div class="feature-card__icon">✦</div>
+            <h3 class="feature-card__title">Форматы</h3>
+            <p class="feature-card__desc">Воркшопы, лекции, нетворкинг-вечера, питчи</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">◈</div>
+            <h3 class="feature-card__title">Команда</h3>
+            <p class="feature-card__desc">Распределение ролей и управление волонтёрами</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon">❋</div>
+            <h3 class="feature-card__title">Опыт</h3>
+            <p class="feature-card__desc">Портфолио реальных проведённых мероприятий</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-block inner-block--white">
+      <div class="container">
+        <blockquote class="inner-callout">Каждое мероприятие Founder's Hub — это твоя точка роста как лидера и организатора.</blockquote>
+      </div>
+    </section>
+
+    <section class="inner-cta">
+      <div class="container">
+        <h2>Хочешь стать частью этого?</h2>
+        <button type="button" class="btn btn--primary" data-home-join>Вступить в Founder's Hub →</button>
+      </div>
+    </section>
+  </div>
+
   <!-- NEWS PAGE 1 -->
   <div id="page-news-1" style="display:none">
     <div class="inner-hero">
@@ -2188,12 +2528,15 @@
       'directions/education': 'page-dir-1',
       'directions/projects':  'page-dir-2',
       'directions/network':   'page-dir-3',
+      'directions/marketing': 'page-dir-4',
+      'directions/hr':        'page-dir-5',
+      'directions/events':    'page-dir-6',
       'news/1': 'page-news-1',
       'news/2': 'page-news-2',
     };
 
     function navigate(hash) {
-      const all = ['page-home', 'page-dir-1', 'page-dir-2', 'page-dir-3', 'page-news-1', 'page-news-2'];
+      const all = ['page-home', 'page-dir-1', 'page-dir-2', 'page-dir-3', 'page-dir-4', 'page-dir-5', 'page-dir-6', 'page-news-1', 'page-news-2'];
       all.forEach(id => document.getElementById(id).style.display = 'none');
       const target = hash ? routes[hash] : null;
       const pageId = target || 'page-home';
@@ -2342,6 +2685,96 @@
           track.scrollTo({ left: i * track.offsetWidth, behavior: 'smooth' });
         });
       });
+    })();
+
+    (function() {
+      const wrapper = document.getElementById('dir-slider');
+      const track = wrapper?.querySelector('.dir-slider-track');
+      const dotsContainer = document.getElementById('dir-dots');
+      const prevBtn = wrapper?.querySelector('.dir-arrow--prev');
+      const nextBtn = wrapper?.querySelector('.dir-arrow--next');
+      if (!track || !dotsContainer) return;
+
+      const cards = track.querySelectorAll('.direction-card');
+
+      dotsContainer.innerHTML = '';
+      cards.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'slider-dot' + (i === 0 ? ' is-active' : '');
+        dot.dataset.index = String(i);
+        dotsContainer.appendChild(dot);
+      });
+
+      function getCardStep() {
+        const card = track.querySelector('.direction-card');
+        if (!card) return track.offsetWidth;
+        return card.offsetWidth + 20;
+      }
+
+      function getActiveIndex() {
+        const step = getCardStep();
+        if (!step) return 0;
+        return Math.round(track.scrollLeft / step);
+      }
+
+      function isAtStart() {
+        return track.scrollLeft <= 2;
+      }
+
+      function isAtEnd() {
+        return track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      }
+
+      function updateControls() {
+        const index = getActiveIndex();
+        dotsContainer.querySelectorAll('.slider-dot').forEach((d, i) => {
+          d.classList.toggle('is-active', i === index);
+        });
+        if (prevBtn) prevBtn.disabled = isAtStart();
+        if (nextBtn) nextBtn.disabled = isAtEnd();
+      }
+
+      track.addEventListener('scroll', updateControls, { passive: true });
+      window.addEventListener('resize', updateControls);
+
+      dotsContainer.addEventListener('click', e => {
+        const dot = e.target.closest('.slider-dot');
+        if (!dot) return;
+        const i = +dot.dataset.index;
+        const card = cards[i];
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
+
+      prevBtn?.addEventListener('click', () => {
+        const index = getActiveIndex();
+        const target = Math.max(0, index - 1);
+        cards[target]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        const index = getActiveIndex();
+        const target = Math.min(cards.length - 1, index + 1);
+        cards[target]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
+
+      let isDown = false, startX = 0, scrollLeft = 0;
+
+      track.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+      });
+      track.addEventListener('mouseleave', () => { isDown = false; });
+      track.addEventListener('mouseup', () => { isDown = false; });
+      track.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        track.scrollLeft = scrollLeft - walk;
+      });
+
+      updateControls();
     })();
   </script>
 
