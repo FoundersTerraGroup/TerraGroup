@@ -421,25 +421,6 @@
       line-height: 1.75;
     }
 
-    .about__news {
-      margin-top: clamp(2.5rem, 5vw, 4rem);
-    }
-
-    .about__news-heading {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
-      color: var(--black);
-    }
-
-    .news-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      margin-top: 1rem;
-    }
-
     .news-card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -969,12 +950,303 @@
       opacity: 0.7;
     }
 
+    /* SUCCESS STORIES */
+    .about__stories {
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .about__stories-heading {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .about__stories-sub {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .stories-slider {
+      width: 100%;
+    }
+
+    .stories-track {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+      padding-bottom: 4px;
+    }
+
+    .stories-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .stories-track:active {
+      cursor: grabbing;
+    }
+
+    .story-card {
+      flex: 0 0 calc(33.333% - 0.85rem);
+      scroll-snap-align: start;
+      min-width: 260px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1.5px solid rgba(100, 70, 32, 0.1);
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(100, 70, 32, 0.13);
+    }
+
+    .story-card--accent {
+      background: var(--accent);
+    }
+
+    .story-card--accent .story-card__name,
+    .story-card--accent .story-card__text {
+      color: var(--white);
+    }
+
+    .story-card--accent .story-card__tag {
+      background: rgba(233, 219, 172, 0.25);
+      color: var(--accent-light);
+    }
+
+    .story-card--accent .story-card__avatar {
+      background: rgba(233, 219, 172, 0.2);
+      color: var(--accent-light);
+      border-color: rgba(233, 219, 172, 0.3);
+    }
+
+    .story-card--dark {
+      background: #1a1208;
+    }
+
+    .story-card--dark .story-card__name,
+    .story-card--dark .story-card__text {
+      color: var(--white);
+    }
+
+    .story-card--dark .story-card__tag {
+      background: rgba(100, 70, 32, 0.4);
+      color: var(--accent-light);
+    }
+
+    .story-card--dark .story-card__avatar {
+      background: rgba(100, 70, 32, 0.3);
+      color: var(--accent-light);
+      border-color: rgba(100, 70, 32, 0.4);
+    }
+
+    .story-card__avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 2px solid rgba(100, 70, 32, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+
+    .story-card__name {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--black);
+      margin-bottom: 0.35rem;
+    }
+
+    .story-card__tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(100, 70, 32, 0.1);
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .story-card__text {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .stories-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stories-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(100, 70, 32, 0.25);
+      background: var(--white);
+      color: var(--accent);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+
+    .stories-arrow:hover {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      box-shadow: 0 6px 18px rgba(100, 70, 32, 0.3);
+      transform: scale(1.07);
+    }
+
+    .stories-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .stories-dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .story-card {
+        flex: 0 0 85%;
+        min-width: 0;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .story-card {
+        flex: 0 0 calc(50% - 0.625rem);
+      }
+    }
+
+    /* NEWS SECTION */
+    .news-section {
+      padding: var(--section-pad) 0;
+      background: var(--white);
+    }
+
+    .news-section__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .news-section__header h2 {
+      margin-bottom: 0;
+    }
+
+    .news-pagination-info {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .news-section__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      min-height: 300px;
+    }
+
+    .news-section__pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .news-page-btn {
+      font-family: 'Onest', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: transparent;
+      border: 1.5px solid rgba(100, 70, 32, 0.25);
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .news-page-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+
+    .news-page-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .news-page-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .news-section__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .news-section__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* FOOTER */
     .footer {
       background: #1a1208;
       color: var(--white);
-      padding: 3rem 0;
-      text-align: center;
+      padding: clamp(3rem, 6vw, 4.5rem) 0 0;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+      border-bottom: 1px solid rgba(253, 250, 243, 0.08);
     }
 
     .footer__logo {
@@ -982,15 +1254,79 @@
       font-weight: 700;
       font-size: 1.25rem;
       margin-bottom: 1rem;
+      color: var(--white);
     }
 
     .footer__logo span {
       color: var(--accent-light);
     }
 
+    .footer__brand-desc {
+      font-size: 0.875rem;
+      color: rgba(253, 250, 243, 0.5);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    .footer__col-heading {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(253, 250, 243, 0.45);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer__link {
+      font-size: 0.9375rem;
+      color: rgba(253, 250, 243, 0.85);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer__link:hover {
+      color: var(--accent-light);
+    }
+
+    .footer__link::before {
+      content: '→';
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    .footer__contact-item {
+      font-size: 0.9375rem;
+      color: rgba(253, 250, 243, 0.85);
+      line-height: 1.6;
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
     .footer__copy {
       font-size: 0.8125rem;
-      color: rgba(253, 250, 243, 0.45);
+      color: rgba(253, 250, 243, 0.35);
+    }
+
+    .footer__sub {
+      font-size: 0.8125rem;
+      color: rgba(253, 250, 243, 0.35);
     }
 
     /* INNER PAGES */
@@ -1550,30 +1886,19 @@
         grid-template-columns: 1fr;
       }
 
-      .news-cards-grid,
       .for-whom__grid,
       .team__grid {
         display: block;
       }
 
-      #news-slider .slider-track {
-        display: flex;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 0;
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
       }
 
-      #news-slider .slider-track::-webkit-scrollbar {
-        display: none;
-      }
-
-      #news-slider .news-card {
-        flex: 0 0 100%;
-        scroll-snap-align: start;
-        width: 100%;
-        border-radius: var(--radius);
+      .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       #whom-slider .slider-track {
@@ -1646,13 +1971,11 @@
         display: flex !important;
       }
 
-      #news-slider,
       #whom-slider,
       #team-slider {
         display: contents;
       }
 
-      #news-slider .slider-track,
       #whom-slider .slider-track,
       #team-slider .slider-track {
         display: contents;
@@ -1677,6 +2000,7 @@
       <div class="nav__menu">
         <ul class="nav__links" id="nav-links">
           <li><a href="#about">О нас</a></li>
+          <li><a href="#news">Новости</a></li>
           <li><a href="#directions">Направления</a></li>
           <li><a href="#join">Как вступить</a></li>
           <li><a href="#team">Команда</a></li>
@@ -1755,47 +2079,107 @@
           </div>
         </div>
 
-        <div class="about__news">
-          <span class="section-label">Новости</span>
-          <h3 class="about__news-heading">Лента событий</h3>
-          <div class="news-cards-grid">
-            <div class="slider-wrapper" id="news-slider">
-              <div class="slider-track">
-                <article class="news-card" data-route="news/1">
-                  <div class="news-card__visual news-card__visual--1">
-                    <span class="news-card__tag">Выборы</span>
-                  </div>
-                  <div class="news-card__body">
-                    <span class="news-card__date">Май 2026</span>
-                    <h4 class="news-card__title">Старт выборов Вице-президента Founder's Hub</h4>
-                    <p class="news-card__desc">В организации официально открыт приём заявок на пост Вице-президента. Любой активный участник может выдвинуть свою кандидатуру и побороться за роль.</p>
-                    <div class="news-card__footer">
-                      <button type="button" class="news-card__read-btn" data-route="news/1">Читать →</button>
-                      <span class="news-card__meta">#1</span>
-                    </div>
-                  </div>
-                </article>
-                <article class="news-card" data-route="news/2">
-                  <div class="news-card__visual news-card__visual--2">
-                    <span class="news-card__tag">Событие</span>
-                  </div>
-                  <div class="news-card__body">
-                    <span class="news-card__date">7 мая 2026</span>
-                    <h4 class="news-card__title">Завершение семестра и праздник для мужской команды</h4>
-                    <p class="news-card__desc">Founder's Hub успешно закрыл учебный семестр. На финальном мероприятии мы поздравили мужской коллектив с их праздником — 7 мая. Участникам были вручены подарки и сертификаты.</p>
-                    <div class="news-card__footer">
-                      <button type="button" class="news-card__read-btn" data-route="news/2">Читать →</button>
-                      <span class="news-card__meta">#2</span>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              <div class="slider-dots">
-                <span class="slider-dot is-active" data-index="0"></span>
-                <span class="slider-dot" data-index="1"></span>
-              </div>
+        <div class="about__stories">
+          <span class="section-label">Истории успеха</span>
+          <h3 class="about__stories-heading">Участники, которые изменили свою жизнь</h3>
+          <p class="about__stories-sub">
+            Реальные люди. Реальные результаты. Всё началось здесь.
+          </p>
+
+          <div class="stories-slider" id="stories-slider">
+            <div class="stories-track">
+              <article class="story-card">
+                <div class="story-card__avatar">Р</div>
+                <div class="story-card__body">
+                  <h4 class="story-card__name">Райымбек</h4>
+                  <span class="story-card__tag">Реклама и бизнес</span>
+                  <p class="story-card__text">
+                    Получил доступ к спикерам Founder's Hub, стал рекламным лицом
+                    факультета ШЭМ Narxoz University и развивает собственный
+                    коммерческий проект.
+                  </p>
+                </div>
+              </article>
+
+              <article class="story-card story-card--accent">
+                <div class="story-card__avatar">Н</div>
+                <div class="story-card__body">
+                  <h4 class="story-card__name">Нармина</h4>
+                  <span class="story-card__tag">Forbes 30u30</span>
+                  <p class="story-card__text">
+                    Вошла в список Forbes 30 under 30, реализовав свой проект
+                    более чем на $5 000. Пример того, как студенческая идея
+                    становится реальным бизнесом.
+                  </p>
+                </div>
+              </article>
+
+              <article class="story-card">
+                <div class="story-card__avatar">Т</div>
+                <div class="story-card__body">
+                  <h4 class="story-card__name">Тамерлан</h4>
+                  <span class="story-card__tag">Предпринимательство</span>
+                  <p class="story-card__text">
+                    Основатель магазина Darman. Благодаря Founder's Hub получает
+                    более глубокий предпринимательский опыт и продолжает
+                    развивать своё дело.
+                  </p>
+                </div>
+              </article>
+
+              <article class="story-card story-card--dark">
+                <div class="story-card__avatar">Б</div>
+                <div class="story-card__body">
+                  <h4 class="story-card__name">Богдан</h4>
+                  <span class="story-card__tag">Менеджмент</span>
+                  <p class="story-card__text">
+                    Получил управленческий опыт внутри организации и основал
+                    собственный образовательный центр. Теперь сам развивает
+                    других.
+                  </p>
+                </div>
+              </article>
+
+              <article class="story-card story-card--accent">
+                <div class="story-card__avatar">С</div>
+                <div class="story-card__body">
+                  <h4 class="story-card__name">Сая</h4>
+                  <span class="story-card__tag">Бывший Президент</span>
+                  <p class="story-card__text">
+                    Бывший Президент Founder's Hub. Успешно реализовала
+                    собственный стартап более чем на $2 500 и продолжает
+                    вдохновлять следующее поколение основателей.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="stories-nav">
+              <button type="button" class="stories-arrow" id="stories-prev" aria-label="Назад">&#8592;</button>
+              <div class="stories-dots" id="stories-dots"></div>
+              <button type="button" class="stories-arrow" id="stories-next" aria-label="Вперёд">&#8594;</button>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="news-section" id="news">
+      <div class="container">
+        <span class="section-label">Новости</span>
+        <div class="news-section__header">
+          <h2>Лента событий</h2>
+          <div class="news-pagination-info">
+            <span id="news-page-label">Страница 1</span>
+          </div>
+        </div>
+
+        <div class="news-section__grid" id="news-section-grid"></div>
+
+        <div class="news-section__pagination">
+          <button type="button" class="news-page-btn" id="news-prev-page" disabled>← Назад</button>
+          <div class="news-page-dots" id="news-page-dots"></div>
+          <button type="button" class="news-page-btn" id="news-next-page">Вперёд →</button>
         </div>
       </div>
     </section>
@@ -2001,8 +2385,39 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="footer__logo">Founder's <span>Hub</span></p>
-        <p class="footer__copy">© 2023 Founder's Hub — Narxoz University, Almaty</p>
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <p class="footer__logo">Founder's <span>Hub</span></p>
+            <p class="footer__brand-desc">
+              Студенческая организация Narxoz University.
+              Пространство, где студенты становятся основателями.
+            </p>
+          </div>
+
+          <div class="footer__col">
+            <p class="footer__col-heading">Социальные сети</p>
+            <ul class="footer__links">
+              <li>
+                <a href="https://www.instagram.com/foundershub.kz/" target="_blank" rel="noopener" class="footer__link">
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <p class="footer__col-heading">Контакты</p>
+            <ul class="footer__links">
+              <li class="footer__contact-item">Narxoz University</li>
+              <li class="footer__contact-item">г. Алматы, Жандосова 55</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copy">© 2023 Founder's Hub. Все права защищены.</p>
+          <p class="footer__sub">Часть экосистемы Narxoz University</p>
+        </div>
       </div>
     </footer>
   </div>
@@ -2524,6 +2939,88 @@
   </div>
 
   <script>
+    const NEWS_DATA = [
+      {
+        id: 'news/1',
+        tag: 'Выборы',
+        date: 'Май 2026',
+        title: 'Старт выборов Вице-президента Founder\'s Hub',
+        desc: 'В организации официально открыт приём заявок на пост Вице-президента. Любой активный участник может выдвинуть свою кандидатуру.',
+        visual: 'news-card__visual--1',
+        meta: '#1'
+      },
+      {
+        id: 'news/2',
+        tag: 'Событие',
+        date: '7 мая 2026',
+        title: 'Завершение семестра и праздник для мужской команды',
+        desc: 'Founder\'s Hub успешно закрыл учебный семестр. Мужской коллектив поздравили с праздником 7 мая, вручили подарки и сертификаты.',
+        visual: 'news-card__visual--2',
+        meta: '#2'
+      }
+    ];
+
+    const NEWS_PER_PAGE = 3;
+    let newsCurrentPage = 0;
+
+    function renderNewsSection() {
+      const grid = document.getElementById('news-section-grid');
+      const label = document.getElementById('news-page-label');
+      const dotsBox = document.getElementById('news-page-dots');
+      const prevBtn = document.getElementById('news-prev-page');
+      const nextBtn = document.getElementById('news-next-page');
+      if (!grid) return;
+
+      const totalPages = Math.max(1, Math.ceil(NEWS_DATA.length / NEWS_PER_PAGE));
+      const start = newsCurrentPage * NEWS_PER_PAGE;
+      const slice = NEWS_DATA.slice(start, start + NEWS_PER_PAGE);
+
+      grid.innerHTML = slice.map(n => `
+        <article class="news-card" data-route="${n.id}">
+          <div class="news-card__visual ${n.visual}">
+            <span class="news-card__tag">${n.tag}</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">${n.date}</span>
+            <h4 class="news-card__title">${n.title}</h4>
+            <p class="news-card__desc">${n.desc}</p>
+            <div class="news-card__footer">
+              <button type="button" class="news-card__read-btn" data-route="${n.id}">Читать →</button>
+              <span class="news-card__meta">${n.meta}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.news-card[data-route]').forEach(card => {
+        card.addEventListener('click', () => goTo(card.dataset.route));
+      });
+      grid.querySelectorAll('.news-card__read-btn[data-route]').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          goTo(btn.dataset.route);
+        });
+      });
+
+      if (label) label.textContent = `Страница ${newsCurrentPage + 1} из ${totalPages}`;
+
+      if (dotsBox) {
+        dotsBox.innerHTML = '';
+        for (let i = 0; i < totalPages; i++) {
+          const d = document.createElement('span');
+          d.className = 'slider-dot' + (i === newsCurrentPage ? ' is-active' : '');
+          d.addEventListener('click', () => {
+            newsCurrentPage = i;
+            renderNewsSection();
+          });
+          dotsBox.appendChild(d);
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = newsCurrentPage === 0;
+      if (nextBtn) nextBtn.disabled = newsCurrentPage >= totalPages - 1;
+    }
+
     const routes = {
       'directions/education': 'page-dir-1',
       'directions/projects':  'page-dir-2',
@@ -2563,23 +3060,29 @@
         card.addEventListener('click', () => goTo(card.dataset.route));
       });
 
-      document.querySelectorAll('.news-card[data-route]').forEach(card => {
-        card.addEventListener('click', () => goTo(card.dataset.route));
+      renderNewsSection();
+
+      document.getElementById('news-prev-page')?.addEventListener('click', () => {
+        if (newsCurrentPage > 0) {
+          newsCurrentPage--;
+          renderNewsSection();
+        }
       });
 
-      document.querySelectorAll('.news-card__read-btn[data-route]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          goTo(btn.dataset.route);
-        });
+      document.getElementById('news-next-page')?.addEventListener('click', () => {
+        const total = Math.ceil(NEWS_DATA.length / NEWS_PER_PAGE);
+        if (newsCurrentPage < total - 1) {
+          newsCurrentPage++;
+          renderNewsSection();
+        }
       });
 
       document.querySelectorAll('[data-go-home]').forEach(btn => {
         btn.addEventListener('click', () => {
           goTo('');
           requestAnimationFrame(() => {
-            const about = document.getElementById('about');
-            if (about) about.scrollIntoView({ behavior: 'smooth' });
+            const news = document.getElementById('news');
+            if (news) news.scrollIntoView({ behavior: 'smooth' });
           });
         });
       });
@@ -2632,21 +3135,66 @@
     }
 
     (function() {
-      const track = document.querySelector('#news-slider .slider-track');
-      const dots  = document.querySelectorAll('#news-slider .slider-dot');
-      if (!track || !dots.length) return;
+      const track = document.querySelector('#stories-slider .stories-track');
+      const dotsBox = document.getElementById('stories-dots');
+      const prevBtn = document.getElementById('stories-prev');
+      const nextBtn = document.getElementById('stories-next');
+      if (!track || !dotsBox) return;
 
-      track.addEventListener('scroll', () => {
-        const index = Math.round(track.scrollLeft / track.offsetWidth);
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
-      }, { passive: true });
+      const cards = track.querySelectorAll('.story-card');
 
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const i = +dot.dataset.index;
-          track.scrollTo({ left: i * track.offsetWidth, behavior: 'smooth' });
+      cards.forEach((_, i) => {
+        const d = document.createElement('span');
+        d.className = 'slider-dot' + (i === 0 ? ' is-active' : '');
+        d.dataset.index = i;
+        dotsBox.appendChild(d);
+      });
+      const dots = dotsBox.querySelectorAll('.slider-dot');
+
+      function getStep() {
+        return (cards[0]?.offsetWidth || 0) + 20;
+      }
+
+      function syncDots() {
+        const idx = Math.round(track.scrollLeft / getStep());
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+        if (prevBtn) prevBtn.disabled = track.scrollLeft <= 1;
+        if (nextBtn) nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      }
+
+      track.addEventListener('scroll', syncDots, { passive: true });
+      window.addEventListener('resize', syncDots);
+
+      dots.forEach(d => {
+        d.addEventListener('click', () => {
+          const i = +d.dataset.index;
+          if (cards[i]) cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         });
       });
+
+      prevBtn?.addEventListener('click', () => {
+        track.scrollBy({ left: -getStep(), behavior: 'smooth' });
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        track.scrollBy({ left: getStep(), behavior: 'smooth' });
+      });
+
+      let down = false, sx = 0, sl = 0;
+      track.addEventListener('mousedown', e => {
+        down = true;
+        sx = e.pageX - track.offsetLeft;
+        sl = track.scrollLeft;
+      });
+      track.addEventListener('mouseleave', () => { down = false; });
+      track.addEventListener('mouseup', () => { down = false; });
+      track.addEventListener('mousemove', e => {
+        if (!down) return;
+        e.preventDefault();
+        track.scrollLeft = sl - (e.pageX - track.offsetLeft - sx) * 1.2;
+      });
+
+      syncDots();
     })();
 
     (function() {
